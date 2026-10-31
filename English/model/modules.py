@@ -1,13 +1,10 @@
-import os
 import json
-import copy
-import math
+import os
 from collections import OrderedDict
 
-import torch
-import torch.nn as nn
 import numpy as np
-import torch.nn.functional as F
+import torch
+from torch import nn
 
 try:
     from utils.tools import get_mask_from_lengths, pad
@@ -21,7 +18,7 @@ class VarianceAdaptor(nn.Module):
     """Variance Adaptor"""
 
     def __init__(self, preprocess_config, model_config):
-        super(VarianceAdaptor, self).__init__()
+        super().__init__()
         self.duration_predictor = VariancePredictor(model_config)
         self.length_regulator = LengthRegulator()
         self.pitch_predictor = VariancePredictor(model_config)
@@ -146,7 +143,7 @@ class VarianceAdaptor(nn.Module):
             x = x + pitch_embedding
         if self.energy_feature_level == "frame_level":
             energy_prediction, energy_embedding = self.get_energy_embedding(
-                x, energy_target, mel_mask, p_control
+                x, energy_target, mel_mask, e_control
             )
             x = x + energy_embedding
 
@@ -165,7 +162,7 @@ class LengthRegulator(nn.Module):
     """Length Regulator"""
 
     def __init__(self):
-        super(LengthRegulator, self).__init__()
+        super().__init__()
 
     def LR(self, x, duration, max_len):
         output = list()
@@ -189,6 +186,8 @@ class LengthRegulator(nn.Module):
             expand_size = predicted[i].item()
             out.append(vec.expand(max(int(expand_size), 0), -1))
         out = torch.cat(out, 0)
+        if out.shape[0] == 0:
+            out = batch[0:1].clone()
 
         return out
 
@@ -201,7 +200,7 @@ class VariancePredictor(nn.Module):
     """Duration, Pitch and Energy Predictor"""
 
     def __init__(self, model_config):
-        super(VariancePredictor, self).__init__()
+        super().__init__()
 
         self.input_size = model_config["transformer"]["encoder_hidden"]
         self.filter_size = model_config["variance_predictor"]["filter_size"]
@@ -279,7 +278,7 @@ class Conv(nn.Module):
         :param bias: boolean. if True, bias is included.
         :param w_init: str. weight inits with xavier initialization.
         """
-        super(Conv, self).__init__()
+        super().__init__()
 
         self.conv = nn.Conv1d(
             in_channels,

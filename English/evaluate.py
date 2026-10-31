@@ -1,16 +1,12 @@
 import argparse
-import os
 
 import torch
 import yaml
-import torch.nn as nn
-from torch.utils.data import DataLoader
-
-from utils.model import get_model, get_vocoder
-from utils.tools import to_device, log, synth_one_sample
-from model import FastSpeech2Loss
 from dataset import Dataset
-
+from model import FastSpeech2Loss
+from torch.utils.data import DataLoader
+from utils.model import get_model
+from utils.tools import log, synth_one_sample, to_device
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -35,6 +31,7 @@ def evaluate(model, step, configs, logger=None, vocoder=None):
 
     # Evaluation
     loss_sums = [0 for _ in range(6)]
+    total_samples = 0
     for batchs in loader:
         for batch in batchs:
             batch = to_device(batch, device)
@@ -45,10 +42,12 @@ def evaluate(model, step, configs, logger=None, vocoder=None):
                 # Cal Loss
                 losses = Loss(batch, output)
 
+                bsz = len(batch[0])
+                total_samples += bsz
                 for i in range(len(losses)):
-                    loss_sums[i] += losses[i].item() * len(batch[0])
+                    loss_sums[i] += losses[i].item() * bsz
 
-    loss_means = [loss_sum / len(dataset) for loss_sum in loss_sums]
+    loss_means = [loss_sum / max(1, total_samples) for loss_sum in loss_sums]
 
     message = "Validation Step {}, Total Loss: {:.4f}, Mel Loss: {:.4f}, Mel PostNet Loss: {:.4f}, Pitch Loss: {:.4f}, Energy Loss: {:.4f}, Duration Loss: {:.4f}".format(
         *([step] + [l for l in loss_means])
@@ -67,20 +66,20 @@ def evaluate(model, step, configs, logger=None, vocoder=None):
         log(
             logger,
             fig=fig,
-            tag="Validation/step_{}_{}".format(step, tag),
+            tag=f"Validation/step_{step}_{tag}",
         )
         sampling_rate = preprocess_config["preprocessing"]["audio"]["sampling_rate"]
         log(
             logger,
             audio=wav_reconstruction,
             sampling_rate=sampling_rate,
-            tag="Validation/step_{}_{}_reconstructed".format(step, tag),
+            tag=f"Validation/step_{step}_{tag}_reconstructed",
         )
         log(
             logger,
             audio=wav_prediction,
             sampling_rate=sampling_rate,
-            tag="Validation/step_{}_{}_synthesized".format(step, tag),
+            tag=f"Validation/step_{step}_{tag}_synthesized",
         )
 
     return message

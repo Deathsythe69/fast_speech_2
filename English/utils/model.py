@@ -1,10 +1,9 @@
-import os
 import json
-
-import torch
-import numpy as np
+import os
 
 import hifigan
+import numpy as np
+import torch
 from model import FastSpeech2, ScheduledOptim
 
 
@@ -15,7 +14,7 @@ def get_model(args, configs, device, train=False):
     if args.restore_step:
         ckpt_path = os.path.join(
             train_config["path"]["ckpt_path"],
-            "{}.pth.tar".format(args.restore_step),
+            f"{args.restore_step}.pth.tar",
         )
         ckpt = torch.load(ckpt_path)
         model.load_state_dict(ckpt["model"])
@@ -55,15 +54,30 @@ def get_vocoder(config, device):
         vocoder.mel2wav.eval()
         vocoder.mel2wav.to(device)
     elif name == "HiFi-GAN":
-        with open("hifigan/config.json", "r") as f:
+        base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        cfg_candidates = [
+            os.path.join(base_dir, "hifigan", "config.json"),
+            os.path.join(base_dir, "..", "vocoder", "config.json"),
+            os.path.join(base_dir, "vocoder", "config.json"),
+            "hifigan/config.json",
+            "vocoder/config.json",
+        ]
+        ckpt_candidates = [
+            os.path.join(base_dir, "hifigan", f"generator_{speaker}.pth.tar"),
+            os.path.join(base_dir, "..", "vocoder", f"generator_{speaker}.pth.tar"),
+            os.path.join(base_dir, "vocoder", f"generator_{speaker}.pth.tar"),
+            f"hifigan/generator_{speaker}.pth.tar",
+            f"vocoder/generator_{speaker}.pth.tar",
+        ]
+        cfg_path = next((p for p in cfg_candidates if os.path.exists(p)), cfg_candidates[0])
+        ckpt_path = next((p for p in ckpt_candidates if os.path.exists(p)), ckpt_candidates[0])
+
+        with open(cfg_path, "r", encoding="utf-8") as f:
             config = json.load(f)
         config = hifigan.AttrDict(config)
         vocoder = hifigan.Generator(config)
-        if speaker == "LJSpeech":
-            ckpt = torch.load("hifigan/generator_LJSpeech.pth.tar")
-        elif speaker == "universal":
-            ckpt = torch.load("hifigan/generator_universal.pth.tar")
-        vocoder.load_state_dict(ckpt["generator"])
+        ckpt = torch.load(ckpt_path, map_location=device)
+        vocoder.load_state_dict(ckpt.get("generator", ckpt))
         vocoder.eval()
         vocoder.remove_weight_norm()
         vocoder.to(device)

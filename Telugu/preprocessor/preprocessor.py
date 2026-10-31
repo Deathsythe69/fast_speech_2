@@ -3,19 +3,20 @@ Extracts 80-channel mel-spectrograms, PyWorld F0, STFT energy, and phone duratio
 Computes normalization statistics strictly on the train split.
 """
 
-import os
-import json
 import glob
+import json
+import os
 import random
-import tgt
+import sys
+
 import librosa
 import numpy as np
 import pyworld as pw
+import tgt
 from scipy.interpolate import interp1d
 from sklearn.preprocessing import StandardScaler
 from tqdm import tqdm
 
-import sys
 workspace_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 if workspace_root not in sys.path:
     sys.path.insert(0, workspace_root)
@@ -258,11 +259,21 @@ class Preprocessor:
 
         # 5. Ensure sum(durations) == T_mel
         dur_sum = sum(duration)
-        if dur_sum != T_mel:
+        if dur_sum != T_mel and duration:
             diff = T_mel - dur_sum
-            if duration:
-                max_idx = int(np.argmax(duration))
-                duration[max_idx] = max(1, duration[max_idx] + diff)
+            max_idx = int(np.argmax(duration))
+            if duration[max_idx] + diff >= 1:
+                duration[max_idx] += diff
+            else:
+                while sum(duration) != T_mel:
+                    cur_diff = T_mel - sum(duration)
+                    if cur_diff > 0:
+                        duration[int(np.argmax(duration))] += 1
+                    else:
+                        cand = [i for i, d in enumerate(duration) if d > 1]
+                        if not cand:
+                            break
+                        duration[cand[int(np.argmax([duration[i] for i in cand]))]] -= 1
 
         # 6. PyWorld Pitch (F0)
         pitch, t = pw.dio(

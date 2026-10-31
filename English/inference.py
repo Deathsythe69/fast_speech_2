@@ -3,15 +3,17 @@ Synthesizes test sentences, exports 22050 Hz 16-bit PCM WAVs, JSON metadata,
 and raw variance adaptor representations (.npz) for plotting and evaluation.
 """
 
+import argparse
+import json
 import os
+import random
 import sys
 import time
-import json
-import yaml
-import argparse
+
 import numpy as np
 import soundfile as sf
 import torch
+import yaml
 
 dir_path = os.path.dirname(os.path.abspath(__file__))
 parent_path = os.path.dirname(dir_path)
@@ -19,12 +21,12 @@ for p in [dir_path, parent_path]:
     if p not in sys.path:
         sys.path.insert(0, p)
 
-from text.normalizer import normalize_text_en
-from text.g2p import text_to_phonemes_en, phonemes_to_sequence_en
-from model.fastspeech2 import FastSpeech2
-from utils.tools import get_mask_from_lengths
-from hifigan.models import Generator as HiFiGANGenerator
 from hifigan import AttrDict
+from hifigan.models import Generator as HiFiGANGenerator
+from model.fastspeech2 import FastSpeech2
+from text.g2p import phonemes_to_sequence_en, text_to_phonemes_en
+from text.normalizer import normalize_text_en
+from utils.tools import get_mask_from_lengths
 
 
 def load_vocoder(vocoder_dir, device):
@@ -98,6 +100,7 @@ def build_word_to_symbol_map(raw_text):
 
 def run_inference(args):
     # Set fixed seeds for deterministic reproducibility
+    random.seed(1234)
     torch.manual_seed(1234)
     np.random.seed(1234)
     if torch.cuda.is_available():

@@ -9,15 +9,16 @@ Executes:
 5. Writes Results/<Lang>/inference_manifest.json
 """
 
-import os
-import sys
-import json
-import hashlib
 import argparse
+import hashlib
+import json
 import subprocess
-from datetime import datetime, timezone
+import sys
+from datetime import UTC, datetime
 from pathlib import Path
+
 import torch
+
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Orchestrate inference and analysis pipeline.")
@@ -68,12 +69,16 @@ def orchestrate_language(lang: str, args):
     # Determine checkpoint
     ckpt_path_str = args.checkpoint
     if ckpt_path_str is None:
+        cand_lang_best = root_dir / lang_name / "checkpoints" / "best.pth"
+        cand_lang_last = root_dir / lang_name / "checkpoints" / "last.pth"
         cand_best = root_dir / "checkpoints" / lang_code / "best.pth"
         cand_last = root_dir / "checkpoints" / lang_code / "last.pth"
-        if cand_best.exists():
+        if cand_lang_best.exists():
+            ckpt_path = cand_lang_best
+        elif cand_lang_last.exists():
+            ckpt_path = cand_lang_last
+        elif cand_best.exists():
             ckpt_path = cand_best
-        elif cand_last.exists():
-            ckpt_path = cand_last
         else:
             ckpt_path = cand_last
     else:
@@ -170,7 +175,7 @@ def orchestrate_language(lang: str, args):
     manifest = {
         "language": lang_name,
         "provisional": bool(args.provisional or "provisional" in str(ckpt_path).lower() or step <= 1000),
-        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "timestamp": datetime.now(UTC).isoformat(),
         "checkpoint": {
             "path": str(ckpt_path),
             "step": step,

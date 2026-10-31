@@ -2,11 +2,12 @@
 Phase 3 requirement: pre-alignment check, MFA alignment, TextGrid generation, and alignment report.
 """
 
+import argparse
+import glob
+import json
 import os
 import sys
-import json
-import glob
-import argparse
+
 import numpy as np
 import soundfile as sf
 import tgt
@@ -59,7 +60,7 @@ def pre_alignment_check(raw_dir, lang, expected_sr=22050):
                 errors.append((wav_path, f"Channel count mismatch: {info.channels} != 1 (mono)"))
                 continue
         except Exception as e:
-            errors.append((wav_path, f"Corrupted audio file: {str(e)}"))
+            errors.append((wav_path, f"Corrupted audio file: {e!s}"))
             continue
 
         valid_files.append((wav_path, lab_path))
@@ -70,7 +71,8 @@ def pre_alignment_check(raw_dir, lang, expected_sr=22050):
 
 def generate_lexicon(raw_dir, lang, out_dict_path):
     """Generates an MFA-compatible pronunciation dictionary from transcripts in raw_dir."""
-    os.makedirs(os.path.dirname(os.dict_path) if os.path.dirname(out_dict_path) else ".", exist_ok=True)
+    dict_dir = os.path.dirname(out_dict_path)
+    os.makedirs(dict_dir if dict_dir else ".", exist_ok=True)
     lab_files = glob.glob(os.path.join(raw_dir, "**", "*.lab"), recursive=True)
 
     words = set()

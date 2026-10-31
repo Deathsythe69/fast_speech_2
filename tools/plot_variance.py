@@ -3,16 +3,18 @@ Generates high-resolution (200 DPI) duration, pitch, and energy figures per test
 along with focused comparison figures for English ('conduct') and Telugu ('పట్టు').
 """
 
-import os
-import sys
+import argparse
 import glob
 import json
-import argparse
-import numpy as np
+import os
+import sys
+
 import matplotlib
+import numpy as np
+
 matplotlib.use("Agg")
-import matplotlib.pyplot as plt
 import matplotlib.font_manager as fm
+import matplotlib.pyplot as plt
 
 workspace_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if workspace_root not in sys.path:
@@ -21,24 +23,25 @@ if workspace_root not in sys.path:
 
 def setup_matplotlib_fonts(lang="english"):
     """Finds and registers fonts with complete Telugu and Latin glyph coverage."""
-    # Check Nirmala.ttc (Windows standard for Indian scripts + Latin)
-    nirmala_path = "C:\\Windows\\Fonts\\Nirmala.ttc"
+    windir = os.environ.get("WINDIR", "C:\\Windows")
+    nirmala_path = os.path.join(windir, "Fonts", "Nirmala.ttc")
     noto_path = os.path.join(workspace_root, "assets", "fonts", "NotoSansTelugu-Regular.ttf")
 
     font_family = ["DejaVu Sans", "Segoe UI", "Arial"]
+
+    if os.path.exists(noto_path):
+        try:
+            fe = fm.FontEntry(fname=noto_path, name="NotoSansTelugu")
+            fm.fontManager.ttflist.insert(0, fe)
+            font_family.insert(0, "NotoSansTelugu")
+        except Exception:
+            pass
 
     if os.path.exists(nirmala_path):
         try:
             fe = fm.FontEntry(fname=nirmala_path, name="NirmalaUI")
             fm.fontManager.ttflist.insert(0, fe)
             font_family.insert(0, "NirmalaUI")
-        except Exception:
-            pass
-    elif os.path.exists(noto_path):
-        try:
-            fe = fm.FontEntry(fname=noto_path, name="NotoSansTelugu")
-            fm.fontManager.ttflist.insert(0, fe)
-            font_family.insert(0, "NotoSansTelugu")
         except Exception:
             pass
 

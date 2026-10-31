@@ -1,5 +1,5 @@
-import torch
 import numpy as np
+import torch
 
 
 class ScheduledOptim:
@@ -27,8 +27,23 @@ class ScheduledOptim:
         # print(self.init_lr)
         self._optimizer.zero_grad()
 
-    def load_state_dict(self, path):
-        self._optimizer.load_state_dict(path)
+    def get_lr(self):
+        for param_group in self._optimizer.param_groups:
+            return param_group['lr']
+        return 0.0
+
+    def state_dict(self):
+        return {
+            'optimizer': self._optimizer.state_dict(),
+            'current_step': self.current_step,
+        }
+
+    def load_state_dict(self, state_dict):
+        if isinstance(state_dict, dict) and 'optimizer' in state_dict:
+            self._optimizer.load_state_dict(state_dict['optimizer'])
+            self.current_step = state_dict.get('current_step', self.current_step)
+        else:
+            self._optimizer.load_state_dict(state_dict)
 
     def _get_lr_scale(self):
         lr = np.min(

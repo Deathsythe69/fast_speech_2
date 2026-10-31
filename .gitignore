@@ -21,7 +21,9 @@ scratch/
 tmp/
 *.tmp
 *.log
+events.out.tfevents.*
 
 # Antigravity agent system artifacts
 .system_generated/
 .gemini/
+

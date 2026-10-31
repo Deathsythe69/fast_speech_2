@@ -16,14 +16,14 @@ Outputs:
 - Results/<Lang>/val_metrics.md
 """
 
-import os
-import sys
-import json
-import yaml
 import argparse
+import json
+import sys
 from pathlib import Path
+
 import numpy as np
 import torch
+import yaml
 
 SILENCE_TOKENS = {"sp", "spn", "sil", "pau", "<pad>"}
 
@@ -100,14 +100,14 @@ def generate_synthetic_val_samples(lang: str, config: dict, stats: dict, count: 
 
     # Get frontend
     if lang.lower() == "english":
+        from inference import build_word_to_symbol_map
         from text import phonemes_to_sequence_en
-        from inference import normalize_text_en, build_word_to_symbol_map
         def text_to_seq(t):
             _, phones = build_word_to_symbol_map(t)
             return np.array(phonemes_to_sequence_en(phones), dtype=np.int64)
     else:
+        from inference import build_word_to_symbol_map
         from text import phonemes_to_sequence_te
-        from inference import normalize_text_te, build_word_to_symbol_map
         def text_to_seq(t):
             _, phones = build_word_to_symbol_map(t)
             return np.array(phonemes_to_sequence_te(phones), dtype=np.int64)
