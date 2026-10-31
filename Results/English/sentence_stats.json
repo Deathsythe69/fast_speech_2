@@ -1,0 +1,331 @@
+[
+  {
+    "id": "E1",
+    "raw_text": "The antidisestablishmentarianism movement gained considerable momentum during the parliamentary proceedings.",
+    "normalized_text": "The antidisestablishmentarianism movement gained considerable momentum during the parliamentary proceedings.",
+    "speaker": "speaker_0",
+    "checkpoint": "C:\\Users\\Panig\\OneDrive\\Documents\\fast_speech_2\\checkpoints\\english\\last.pth",
+    "step": 1000,
+    "num_symbols": 96,
+    "total_duration_s": 1.1262,
+    "total_frames": 97,
+    "speaking_rate_sym_per_s": 85.24,
+    "longest_symbol": {
+      "symbol": "Z",
+      "duration_ms": 23.22,
+      "frames": 2,
+      "index": 95
+    },
+    "silence": {
+      "count": 9,
+      "mean_duration_ms": 11.61,
+      "total_duration_ms": 104.49
+    },
+    "pitch_f0_hz": {
+      "voiced_symbols_count": 87,
+      "mean": 219.81,
+      "min": 169.61,
+      "max": 281.8,
+      "std": 23.03,
+      "range_semitones": 8.79,
+      "final_voiced_f0": 217.97,
+      "declination_hz": -1.84,
+      "declination_semitones": -0.15
+    },
+    "energy": {
+      "mean": 39.1262,
+      "max": 63.7761,
+      "std": 11.2721,
+      "peak_symbol": "M",
+      "peak_symbol_energy": 63.7761,
+      "peak_symbol_index": 35
+    }
+  },
+  {
+    "id": "E2a",
+    "raw_text": "The orchestra's conduct during the ceremony was praised by the audience.",
+    "normalized_text": "The orchestra's conduct during the ceremony was praised by the audience.",
+    "speaker": "speaker_0",
+    "checkpoint": "C:\\Users\\Panig\\OneDrive\\Documents\\fast_speech_2\\checkpoints\\english\\last.pth",
+    "step": 1000,
+    "num_symbols": 61,
+    "total_duration_s": 0.7082,
+    "total_frames": 61,
+    "speaking_rate_sym_per_s": 86.13,
+    "longest_symbol": {
+      "symbol": "DH",
+      "duration_ms": 11.61,
+      "frames": 1,
+      "index": 0
+    },
+    "silence": {
+      "count": 10,
+      "mean_duration_ms": 11.61,
+      "total_duration_ms": 116.1
+    },
+    "pitch_f0_hz": {
+      "voiced_symbols_count": 51,
+      "mean": 223.32,
+      "min": 161.29,
+      "max": 291.5,
+      "std": 23.56,
+      "range_semitones": 10.25,
+      "final_voiced_f0": 215.79,
+      "declination_hz": -7.53,
+      "declination_semitones": -0.59
+    },
+    "energy": {
+      "mean": 38.6336,
+      "max": 79.3857,
+      "std": 12.8998,
+      "peak_symbol": "D",
+      "peak_symbol_energy": 79.3857,
+      "peak_symbol_index": 56
+    }
+  },
+  {
+    "id": "E2b",
+    "raw_text": "The researchers will conduct an experiment to evaluate the proposed method.",
+    "normalized_text": "The researchers will conduct an experiment to evaluate the proposed method.",
+    "speaker": "speaker_0",
+    "checkpoint": "C:\\Users\\Panig\\OneDrive\\Documents\\fast_speech_2\\checkpoints\\english\\last.pth",
+    "step": 1000,
+    "num_symbols": 66,
+    "total_duration_s": 0.7663,
+    "total_frames": 66,
+    "speaking_rate_sym_per_s": 86.13,
+    "longest_symbol": {
+      "symbol": "DH",
+      "duration_ms": 11.61,
+      "frames": 1,
+      "index": 0
+    },
+    "silence": {
+      "count": 10,
+      "mean_duration_ms": 11.61,
+      "total_duration_ms": 116.1
+    },
+    "pitch_f0_hz": {
+      "voiced_symbols_count": 56,
+      "mean": 222.14,
+      "min": 164.61,
+      "max": 267.4,
+      "std": 20.91,
+      "range_semitones": 8.4,
+      "final_voiced_f0": 222.84,
+      "declination_hz": 0.7,
+      "declination_semitones": 0.05
+    },
+    "energy": {
+      "mean": 41.5154,
+      "max": 64.3332,
+      "std": 9.6864,
+      "peak_symbol": "K",
+      "peak_symbol_energy": 64.3332,
+      "peak_symbol_index": 27
+    }
+  },
+  {
+    "id": "E3",
+    "raw_text": "The rhyth m of the orchestra changed unexpectedly.",
+    "normalized_text": "The rhyth m of the orchestra changed unexpectedly.",
+    "speaker": "speaker_0",
+    "checkpoint": "C:\\Users\\Panig\\OneDrive\\Documents\\fast_speech_2\\checkpoints\\english\\last.pth",
+    "step": 1000,
+    "num_symbols": 44,
+    "total_duration_s": 0.5108,
+    "total_frames": 44,
+    "speaking_rate_sym_per_s": 86.13,
+    "longest_symbol": {
+      "symbol": "DH",
+      "duration_ms": 11.61,
+      "frames": 1,
+      "index": 0
+    },
+    "silence": {
+      "count": 7,
+      "mean_duration_ms": 11.61,
+      "total_duration_ms": 81.27
+    },
+    "pitch_f0_hz": {
+      "voiced_symbols_count": 37,
+      "mean": 223.42,
+      "min": 160.42,
+      "max": 281.31,
+      "std": 25.06,
+      "range_semitones": 9.72,
+      "final_voiced_f0": 177.27,
+      "declination_hz": -46.15,
+      "declination_semitones": -4.01
+    },
+    "energy": {
+      "mean": 38.4988,
+      "max": 62.2724,
+      "std": 9.6937,
+      "peak_symbol": "EH1",
+      "peak_symbol_energy": 62.2724,
+      "peak_symbol_index": 7
+    }
+  },
+  {
+    "id": "E4",
+    "raw_text": "The meeting will start at 10:45 AM on 12 November 2026, so andaroo should arrive on time.",
+    "normalized_text": "The meeting will start at ten forty-five A M on twelve November twenty twenty-six, so andaroo should arrive on time.",
+    "speaker": "speaker_0",
+    "checkpoint": "C:\\Users\\Panig\\OneDrive\\Documents\\fast_speech_2\\checkpoints\\english\\last.pth",
+    "step": 1000,
+    "num_symbols": 100,
+    "total_duration_s": 1.161,
+    "total_frames": 100,
+    "speaking_rate_sym_per_s": 86.13,
+    "longest_symbol": {
+      "symbol": "DH",
+      "duration_ms": 11.61,
+      "frames": 1,
+      "index": 0
+    },
+    "silence": {
+      "count": 19,
+      "mean_duration_ms": 11.61,
+      "total_duration_ms": 220.59
+    },
+    "pitch_f0_hz": {
+      "voiced_symbols_count": 81,
+      "mean": 218.22,
+      "min": 150.69,
+      "max": 285.15,
+      "std": 25.86,
+      "range_semitones": 11.04,
+      "final_voiced_f0": 173.71,
+      "declination_hz": -44.51,
+      "declination_semitones": -3.95
+    },
+    "energy": {
+      "mean": 39.5049,
+      "max": 69.383,
+      "std": 12.4837,
+      "peak_symbol": "ER0",
+      "peak_symbol_energy": 69.383,
+      "peak_symbol_index": 56
+    },
+    "numeral_time_words": [
+      {
+        "word": "10:45",
+        "phones": [
+          "sp",
+          "T",
+          "EH1",
+          "N",
+          "sp",
+          "F",
+          "AO1",
+          "R",
+          "T",
+          "IH0",
+          "V",
+          "W"
+        ],
+        "symbol_span": [
+          21,
+          33
+        ],
+        "total_duration_ms": 139.32,
+        "total_frames": 12,
+        "mean_pitch_hz": 220.5,
+        "min_pitch_hz": 194.45,
+        "max_pitch_hz": 285.15,
+        "mean_energy": 35.4269
+      },
+      {
+        "word": "AM",
+        "phones": [
+          "sp",
+          "T"
+        ],
+        "symbol_span": [
+          21,
+          23
+        ],
+        "total_duration_ms": 23.22,
+        "total_frames": 2,
+        "mean_pitch_hz": 201.35,
+        "min_pitch_hz": 201.35,
+        "max_pitch_hz": 201.35,
+        "mean_energy": 35.5899
+      },
+      {
+        "word": "12",
+        "phones": [
+          "T",
+          "W",
+          "EH1",
+          "L",
+          "V"
+        ],
+        "symbol_span": [
+          44,
+          49
+        ],
+        "total_duration_ms": 58.05,
+        "total_frames": 5,
+        "mean_pitch_hz": 210.12,
+        "min_pitch_hz": 194.17,
+        "max_pitch_hz": 239.45,
+        "mean_energy": 37.4094
+      },
+      {
+        "word": "November",
+        "phones": [
+          "N",
+          "OW0",
+          "V",
+          "EH1",
+          "M",
+          "B",
+          "ER0"
+        ],
+        "symbol_span": [
+          50,
+          57
+        ],
+        "total_duration_ms": 81.27,
+        "total_frames": 7,
+        "mean_pitch_hz": 225.48,
+        "min_pitch_hz": 189.79,
+        "max_pitch_hz": 268.81,
+        "mean_energy": 43.9365
+      },
+      {
+        "word": "2026,",
+        "phones": [
+          "sp",
+          "T",
+          "W",
+          "EH1",
+          "N",
+          "T",
+          "IY0",
+          "sp",
+          "T",
+          "W",
+          "EH2",
+          "N",
+          "T",
+          "IY0",
+          "S",
+          "K"
+        ],
+        "symbol_span": [
+          57,
+          73
+        ],
+        "total_duration_ms": 185.76,
+        "total_frames": 16,
+        "mean_pitch_hz": 229.06,
+        "min_pitch_hz": 199.59,
+        "max_pitch_hz": 256.06,
+        "mean_energy": 36.9137
+      }
+    ]
+  }
+]

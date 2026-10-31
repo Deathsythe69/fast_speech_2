@@ -1,0 +1,207 @@
+{
+  "id": "E3",
+  "raw_text": "The rhyth m of the orchestra changed unexpectedly.",
+  "normalized_text": "The rhyth m of the orchestra changed unexpectedly.",
+  "phonemes": [
+    "DH",
+    "AH0",
+    "sp",
+    "R",
+    "AY1",
+    "DH",
+    "sp",
+    "EH1",
+    "M",
+    "sp",
+    "AH1",
+    "V",
+    "sp",
+    "DH",
+    "AH0",
+    "sp",
+    "AO1",
+    "R",
+    "K",
+    "AH0",
+    "S",
+    "T",
+    "R",
+    "AH0",
+    "sp",
+    "CH",
+    "EY1",
+    "N",
+    "JH",
+    "D",
+    "sp",
+    "AH2",
+    "N",
+    "IH0",
+    "K",
+    "S",
+    "P",
+    "EH1",
+    "K",
+    "T",
+    "IH0",
+    "D",
+    "L",
+    "IY0"
+  ],
+  "symbol_ids": [
+    91,
+    73,
+    148,
+    130,
+    86,
+    91,
+    148,
+    94,
+    118,
+    148,
+    74,
+    143,
+    148,
+    91,
+    73,
+    148,
+    78,
+    130,
+    116,
+    73,
+    131,
+    133,
+    130,
+    73,
+    148,
+    89,
+    102,
+    119,
+    115,
+    90,
+    148,
+    75,
+    119,
+    108,
+    116,
+    131,
+    129,
+    94,
+    116,
+    133,
+    108,
+    90,
+    117,
+    112
+  ],
+  "speaker": "speaker_0",
+  "speaker_id": 0,
+  "checkpoint": "C:\\Users\\Panig\\OneDrive\\Documents\\fast_speech_2\\checkpoints\\english\\last.pth",
+  "step": 1000,
+  "controls": {
+    "duration": 1.0,
+    "pitch": 1.0,
+    "energy": 1.0
+  },
+  "stats": {
+    "symbols_count": 44,
+    "frames_count": 44,
+    "audio_seconds": 0.5108390022675737,
+    "rtf": 0.3200856418433514
+  },
+  "word_to_symbol_map": [
+    {
+      "word": "The",
+      "start_symbol_idx": 0,
+      "end_symbol_idx": 2,
+      "phones": [
+        "DH",
+        "AH0"
+      ]
+    },
+    {
+      "word": "rhyth",
+      "start_symbol_idx": 3,
+      "end_symbol_idx": 6,
+      "phones": [
+        "R",
+        "AY1",
+        "DH"
+      ]
+    },
+    {
+      "word": "m",
+      "start_symbol_idx": 7,
+      "end_symbol_idx": 9,
+      "phones": [
+        "EH1",
+        "M"
+      ]
+    },
+    {
+      "word": "of",
+      "start_symbol_idx": 10,
+      "end_symbol_idx": 12,
+      "phones": [
+        "AH1",
+        "V"
+      ]
+    },
+    {
+      "word": "the",
+      "start_symbol_idx": 13,
+      "end_symbol_idx": 15,
+      "phones": [
+        "DH",
+        "AH0"
+      ]
+    },
+    {
+      "word": "orchestra",
+      "start_symbol_idx": 16,
+      "end_symbol_idx": 24,
+      "phones": [
+        "AO1",
+        "R",
+        "K",
+        "AH0",
+        "S",
+        "T",
+        "R",
+        "AH0"
+      ]
+    },
+    {
+      "word": "changed",
+      "start_symbol_idx": 25,
+      "end_symbol_idx": 30,
+      "phones": [
+        "CH",
+        "EY1",
+        "N",
+        "JH",
+        "D"
+      ]
+    },
+    {
+      "word": "unexpectedly.",
+      "start_symbol_idx": 31,
+      "end_symbol_idx": 44,
+      "phones": [
+        "AH2",
+        "N",
+        "IH0",
+        "K",
+        "S",
+        "P",
+        "EH1",
+        "K",
+        "T",
+        "IH0",
+        "D",
+        "L",
+        "IY0"
+      ]
+    }
+  ]
+}

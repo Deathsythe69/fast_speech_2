@@ -1,0 +1,171 @@
+{
+  "id": "T2a",
+  "raw_text": "తాడుపై అతని పట్టు చాలా బలంగా ఉంది.",
+  "normalized_text": "తాడుపై అతని పట్టు చాలా బలంగా ఉంది.",
+  "phonemes": [
+    "t",
+    "aa",
+    "d_",
+    "u",
+    "p",
+    "ai",
+    "sp",
+    "a",
+    "t",
+    "a",
+    "n",
+    "i",
+    "sp",
+    "p",
+    "a",
+    "t_",
+    "t_",
+    "u",
+    "sp",
+    "ch",
+    "aa",
+    "l",
+    "aa",
+    "sp",
+    "b",
+    "a",
+    "l",
+    "a",
+    "m",
+    "g",
+    "aa",
+    "sp",
+    "u",
+    "m",
+    "d",
+    "i"
+  ],
+  "symbol_ids": [
+    41,
+    13,
+    38,
+    16,
+    46,
+    22,
+    61,
+    12,
+    41,
+    12,
+    45,
+    14,
+    61,
+    46,
+    12,
+    36,
+    36,
+    16,
+    61,
+    31,
+    13,
+    54,
+    13,
+    61,
+    48,
+    12,
+    54,
+    12,
+    50,
+    28,
+    13,
+    61,
+    16,
+    50,
+    43,
+    14
+  ],
+  "speaker": "default",
+  "speaker_id": 0,
+  "checkpoint": "C:\\Users\\Panig\\OneDrive\\Documents\\fast_speech_2\\checkpoints\\telugu\\last.pth",
+  "step": 1000,
+  "controls": {
+    "duration": 1.0,
+    "pitch": 1.0,
+    "energy": 1.0
+  },
+  "stats": {
+    "symbols_count": 36,
+    "frames_count": 47,
+    "audio_seconds": 0.5456689342403628,
+    "rtf": 0.27505291942903337
+  },
+  "word_to_symbol_map": [
+    {
+      "word": "తాడుపై",
+      "start_symbol_idx": 0,
+      "end_symbol_idx": 6,
+      "phones": [
+        "t",
+        "aa",
+        "d_",
+        "u",
+        "p",
+        "ai"
+      ]
+    },
+    {
+      "word": "అతని",
+      "start_symbol_idx": 7,
+      "end_symbol_idx": 12,
+      "phones": [
+        "a",
+        "t",
+        "a",
+        "n",
+        "i"
+      ]
+    },
+    {
+      "word": "పట్టు",
+      "start_symbol_idx": 13,
+      "end_symbol_idx": 18,
+      "phones": [
+        "p",
+        "a",
+        "t_",
+        "t_",
+        "u"
+      ]
+    },
+    {
+      "word": "చాలా",
+      "start_symbol_idx": 19,
+      "end_symbol_idx": 23,
+      "phones": [
+        "ch",
+        "aa",
+        "l",
+        "aa"
+      ]
+    },
+    {
+      "word": "బలంగా",
+      "start_symbol_idx": 24,
+      "end_symbol_idx": 31,
+      "phones": [
+        "b",
+        "a",
+        "l",
+        "a",
+        "m",
+        "g",
+        "aa"
+      ]
+    },
+    {
+      "word": "ఉంది.",
+      "start_symbol_idx": 32,
+      "end_symbol_idx": 36,
+      "phones": [
+        "u",
+        "m",
+        "d",
+        "i"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,276 @@
+{
+  "id": "E2a",
+  "raw_text": "The orchestra's conduct during the ceremony was praised by the audience.",
+  "normalized_text": "The orchestra's conduct during the ceremony was praised by the audience.",
+  "phonemes": [
+    "DH",
+    "AH0",
+    "sp",
+    "AO1",
+    "R",
+    "K",
+    "AH0",
+    "S",
+    "T",
+    "R",
+    "AH0",
+    "Z",
+    "sp",
+    "K",
+    "AA1",
+    "N",
+    "D",
+    "AH0",
+    "K",
+    "T",
+    "sp",
+    "D",
+    "UH1",
+    "R",
+    "IH0",
+    "NG",
+    "sp",
+    "DH",
+    "AH0",
+    "sp",
+    "S",
+    "EH1",
+    "R",
+    "AH0",
+    "M",
+    "OW2",
+    "N",
+    "IY0",
+    "sp",
+    "W",
+    "AA1",
+    "Z",
+    "sp",
+    "P",
+    "R",
+    "EY1",
+    "Z",
+    "D",
+    "sp",
+    "B",
+    "AY1",
+    "sp",
+    "DH",
+    "AH0",
+    "sp",
+    "AA1",
+    "D",
+    "IY0",
+    "AH0",
+    "N",
+    "S"
+  ],
+  "symbol_ids": [
+    91,
+    73,
+    148,
+    78,
+    130,
+    116,
+    73,
+    131,
+    133,
+    130,
+    73,
+    146,
+    148,
+    116,
+    66,
+    119,
+    90,
+    73,
+    116,
+    133,
+    148,
+    90,
+    137,
+    130,
+    108,
+    120,
+    148,
+    91,
+    73,
+    148,
+    131,
+    94,
+    130,
+    73,
+    118,
+    124,
+    119,
+    112,
+    148,
+    144,
+    66,
+    146,
+    148,
+    129,
+    130,
+    102,
+    146,
+    90,
+    148,
+    88,
+    86,
+    148,
+    91,
+    73,
+    148,
+    66,
+    90,
+    112,
+    73,
+    119,
+    131
+  ],
+  "speaker": "speaker_0",
+  "speaker_id": 0,
+  "checkpoint": "C:\\Users\\Panig\\OneDrive\\Documents\\fast_speech_2\\checkpoints\\english\\last.pth",
+  "step": 1000,
+  "controls": {
+    "duration": 1.0,
+    "pitch": 1.0,
+    "energy": 1.0
+  },
+  "stats": {
+    "symbols_count": 61,
+    "frames_count": 61,
+    "audio_seconds": 0.7082086167800453,
+    "rtf": 0.3130419401177129
+  },
+  "word_to_symbol_map": [
+    {
+      "word": "The",
+      "start_symbol_idx": 0,
+      "end_symbol_idx": 2,
+      "phones": [
+        "DH",
+        "AH0"
+      ]
+    },
+    {
+      "word": "orchestra's",
+      "start_symbol_idx": 3,
+      "end_symbol_idx": 12,
+      "phones": [
+        "AO1",
+        "R",
+        "K",
+        "AH0",
+        "S",
+        "T",
+        "R",
+        "AH0",
+        "Z"
+      ]
+    },
+    {
+      "word": "conduct",
+      "start_symbol_idx": 13,
+      "end_symbol_idx": 20,
+      "phones": [
+        "K",
+        "AA1",
+        "N",
+        "D",
+        "AH0",
+        "K",
+        "T"
+      ]
+    },
+    {
+      "word": "during",
+      "start_symbol_idx": 21,
+      "end_symbol_idx": 26,
+      "phones": [
+        "D",
+        "UH1",
+        "R",
+        "IH0",
+        "NG"
+      ]
+    },
+    {
+      "word": "the",
+      "start_symbol_idx": 27,
+      "end_symbol_idx": 29,
+      "phones": [
+        "DH",
+        "AH0"
+      ]
+    },
+    {
+      "word": "ceremony",
+      "start_symbol_idx": 30,
+      "end_symbol_idx": 38,
+      "phones": [
+        "S",
+        "EH1",
+        "R",
+        "AH0",
+        "M",
+        "OW2",
+        "N",
+        "IY0"
+      ]
+    },
+    {
+      "word": "was",
+      "start_symbol_idx": 39,
+      "end_symbol_idx": 42,
+      "phones": [
+        "W",
+        "AA1",
+        "Z"
+      ]
+    },
+    {
+      "word": "praised",
+      "start_symbol_idx": 43,
+      "end_symbol_idx": 48,
+      "phones": [
+        "P",
+        "R",
+        "EY1",
+        "Z",
+        "D"
+      ]
+    },
+    {
+      "word": "by",
+      "start_symbol_idx": 49,
+      "end_symbol_idx": 51,
+      "phones": [
+        "B",
+        "AY1"
+      ]
+    },
+    {
+      "word": "the",
+      "start_symbol_idx": 52,
+      "end_symbol_idx": 54,
+      "phones": [
+        "DH",
+        "AH0"
+      ]
+    },
+    {
+      "word": "audience.",
+      "start_symbol_idx": 55,
+      "end_symbol_idx": 61,
+      "phones": [
+        "AA1",
+        "D",
+        "IY0",
+        "AH0",
+        "N",
+        "S"
+      ]
+    }
+  ]
+}

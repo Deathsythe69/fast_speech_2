@@ -1,0 +1,27 @@
+# Environments and dependencies
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+
+# Testing and IDEs
+.pytest_cache/
+.coverage
+htmlcov/
+.idea/
+.vscode/
+
+# Temporary / Scratch data
+scratch/
+tmp/
+*.tmp
+*.log
+
+# Antigravity agent system artifacts
+.system_generated/
+.gemini/
