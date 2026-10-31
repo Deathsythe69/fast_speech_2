@@ -1,11 +1,9 @@
 import json
-import math
 import os
 
 import numpy as np
-from torch.utils.data import Dataset
-
 from text import text_to_sequence
+from torch.utils.data import Dataset
 from utils.tools import pad_1D, pad_2D
 
 
@@ -38,25 +36,25 @@ class Dataset(Dataset):
         mel_path = os.path.join(
             self.preprocessed_path,
             "mel",
-            "{}-mel-{}.npy".format(speaker, basename),
+            f"{speaker}-mel-{basename}.npy",
         )
         mel = np.load(mel_path)
         pitch_path = os.path.join(
             self.preprocessed_path,
             "pitch",
-            "{}-pitch-{}.npy".format(speaker, basename),
+            f"{speaker}-pitch-{basename}.npy",
         )
         pitch = np.load(pitch_path)
         energy_path = os.path.join(
             self.preprocessed_path,
             "energy",
-            "{}-energy-{}.npy".format(speaker, basename),
+            f"{speaker}-energy-{basename}.npy",
         )
         energy = np.load(energy_path)
         duration_path = os.path.join(
             self.preprocessed_path,
             "duration",
-            "{}-duration-{}.npy".format(speaker, basename),
+            f"{speaker}-duration-{basename}.npy",
         )
         duration = np.load(duration_path)
 
@@ -81,7 +79,7 @@ class Dataset(Dataset):
             speaker = []
             text = []
             raw_text = []
-            for line in f.readlines():
+            for line in f:
                 n, s, t, r = line.strip("\n").split("|")
                 name.append(n)
                 speaker.append(s)
@@ -178,7 +176,7 @@ class TextDataset(Dataset):
             speaker = []
             text = []
             raw_text = []
-            for line in f.readlines():
+            for line in f:
                 n, s, t, r = line.strip("\n").split("|")
                 name.append(n)
                 speaker.append(s)
@@ -238,9 +236,7 @@ if __name__ == "__main__":
             to_device(batch, device)
             n_batch += 1
     print(
-        "Training set  with size {} is composed of {} batches.".format(
-            len(train_dataset), n_batch
-        )
+        f"Training set  with size {len(train_dataset)} is composed of {n_batch} batches."
     )
 
     n_batch = 0
@@ -249,7 +245,5 @@ if __name__ == "__main__":
             to_device(batch, device)
             n_batch += 1
     print(
-        "Validation set  with size {} is composed of {} batches.".format(
-            len(val_dataset), n_batch
-        )
+        f"Validation set  with size {len(val_dataset)} is composed of {n_batch} batches."
     )

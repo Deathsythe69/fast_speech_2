@@ -1,9 +1,9 @@
 {
   "language": "English",
   "provisional": true,
-  "timestamp": "2026-10-31T14:18:06.326380+00:00",
+  "timestamp": "2026-10-31T15:16:28.851489+00:00",
   "checkpoint": {
-    "path": "C:\\Users\\Panig\\OneDrive\\Documents\\fast_speech_2\\checkpoints\\english\\last.pth",
+    "path": "C:\\Users\\Panig\\OneDrive\\Documents\\fast_speech_2\\English\\checkpoints\\best.pth",
     "step": 1000,
     "sha256": "3ebdc663e877b4e75440bd2cf6591910be83490421e17bb1126586a62b643419"
   },
@@ -14,10 +14,10 @@
     "energy": 1.0
   },
   "commands": [
-    "C:\\Users\\Panig\\OneDrive\\Documents\\fast_speech_2\\.venv\\Scripts\\python.exe C:\\Users\\Panig\\OneDrive\\Documents\\fast_speech_2\\English\\inference.py --checkpoint C:\\Users\\Panig\\OneDrive\\Documents\\fast_speech_2\\checkpoints\\english\\last.pth --out_dir C:\\Users\\Panig\\OneDrive\\Documents\\fast_speech_2\\Results\\English --device cpu --pitch_control 1.0 --energy_control 1.0 --duration_control 1.0",
+    "C:\\Users\\Panig\\OneDrive\\Documents\\fast_speech_2\\.venv\\Scripts\\python.exe C:\\Users\\Panig\\OneDrive\\Documents\\fast_speech_2\\English\\inference.py --checkpoint C:\\Users\\Panig\\OneDrive\\Documents\\fast_speech_2\\English\\checkpoints\\best.pth --out_dir C:\\Users\\Panig\\OneDrive\\Documents\\fast_speech_2\\Results\\English --device cpu --pitch_control 1.0 --energy_control 1.0 --duration_control 1.0",
     "C:\\Users\\Panig\\OneDrive\\Documents\\fast_speech_2\\.venv\\Scripts\\python.exe C:\\Users\\Panig\\OneDrive\\Documents\\fast_speech_2\\tools\\plot_variance.py --lang english --out_dir C:\\Users\\Panig\\OneDrive\\Documents\\fast_speech_2\\Results\\English",
     "C:\\Users\\Panig\\OneDrive\\Documents\\fast_speech_2\\.venv\\Scripts\\python.exe C:\\Users\\Panig\\OneDrive\\Documents\\fast_speech_2\\tools\\sentence_stats.py --lang english --results_dir C:\\Users\\Panig\\OneDrive\\Documents\\fast_speech_2\\Results",
-    "C:\\Users\\Panig\\OneDrive\\Documents\\fast_speech_2\\.venv\\Scripts\\python.exe C:\\Users\\Panig\\OneDrive\\Documents\\fast_speech_2\\tools\\eval_val.py --lang english --checkpoint C:\\Users\\Panig\\OneDrive\\Documents\\fast_speech_2\\checkpoints\\english\\last.pth --device cpu --results_dir C:\\Users\\Panig\\OneDrive\\Documents\\fast_speech_2\\Results"
+    "C:\\Users\\Panig\\OneDrive\\Documents\\fast_speech_2\\.venv\\Scripts\\python.exe C:\\Users\\Panig\\OneDrive\\Documents\\fast_speech_2\\tools\\eval_val.py --lang english --checkpoint C:\\Users\\Panig\\OneDrive\\Documents\\fast_speech_2\\English\\checkpoints\\best.pth --device cpu --results_dir C:\\Users\\Panig\\OneDrive\\Documents\\fast_speech_2\\Results"
   ],
   "outputs": {
     "audio_count": 5,

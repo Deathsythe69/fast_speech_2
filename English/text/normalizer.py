@@ -3,6 +3,7 @@ Handles number, date, time, abbreviation expansion while preserving apostrophes.
 """
 
 import re
+
 import inflect
 from unidecode import unidecode
 

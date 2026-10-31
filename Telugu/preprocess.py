@@ -1,7 +1,8 @@
+import argparse
 import os
 import sys
+
 import yaml
-import argparse
 
 # Add current folder and workspace root to path
 dir_path = os.path.dirname(os.path.abspath(__file__))

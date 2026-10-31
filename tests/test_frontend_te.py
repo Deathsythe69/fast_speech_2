@@ -1,9 +1,11 @@
 """Unit tests for Telugu text frontend (Phase 3)."""
 
 import json
+
 import pytest
-from Telugu.text.normalizer import normalize_text_te, handle_zwnj_zwj
-from Telugu.text.g2p import text_to_phonemes_te, phonemes_to_sequence_te
+
+from Telugu.text.g2p import phonemes_to_sequence_te, text_to_phonemes_te
+from Telugu.text.normalizer import handle_zwnj_zwj, normalize_text_te
 from Telugu.text.symbols import symbols
 
 _valid_symbol_set = set(symbols)

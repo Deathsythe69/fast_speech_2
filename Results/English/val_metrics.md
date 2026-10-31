@@ -1,6 +1,6 @@
 # Quantitative Validation Metrics — English *(Provisional dry-run on validation subset; CPU mode)*
 
-- **Checkpoint**: `C:\Users\Panig\OneDrive\Documents\fast_speech_2\checkpoints\english\last.pth` (Step 1000)
+- **Checkpoint**: `C:\Users\Panig\OneDrive\Documents\fast_speech_2\English\checkpoints\best.pth` (Step 1000)
 - **Evaluation Device**: `CPU`
 - **Evaluated Utterances**: 25
 - **Status**: `Provisional`

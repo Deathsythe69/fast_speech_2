@@ -140,7 +140,7 @@
   ],
   "speaker": "speaker_0",
   "speaker_id": 0,
-  "checkpoint": "C:\\Users\\Panig\\OneDrive\\Documents\\fast_speech_2\\checkpoints\\english\\last.pth",
+  "checkpoint": "C:\\Users\\Panig\\OneDrive\\Documents\\fast_speech_2\\English\\checkpoints\\best.pth",
   "step": 1000,
   "controls": {
     "duration": 1.0,
@@ -151,7 +151,7 @@
     "symbols_count": 66,
     "frames_count": 66,
     "audio_seconds": 0.7662585034013606,
-    "rtf": 0.25048156861554494
+    "rtf": 0.30862643087113445
   },
   "word_to_symbol_map": [
     {

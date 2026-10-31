@@ -15,11 +15,10 @@ covering:
 - numeral/time word breakdowns for E4 and T4
 """
 
-import os
-import sys
-import json
 import argparse
+import json
 from pathlib import Path
+
 import numpy as np
 
 SILENCE_TOKENS = {"sp", "spn", "sil", "pau", "<pad>"}
@@ -213,7 +212,7 @@ def generate_markdown_table(lang: str, sentence_stats_list: list) -> str:
         md_lines.append(f"- **Speaking Rate**: {s['speaking_rate_sym_per_s']} symbols/s | **Total Frames**: {s['total_frames']}")
         md_lines.append(f"- **F0 Declination**: {s['pitch_f0_hz']['declination_hz']} Hz ({s['pitch_f0_hz']['declination_semitones']} st) relative to utterance mean ({s['pitch_f0_hz']['mean']} Hz)")
         
-        if "numeral_time_words" in s and s["numeral_time_words"]:
+        if s.get("numeral_time_words"):
             md_lines.append("")
             md_lines.append("#### Numeral & Time Word Breakdown")
             md_lines.append("| Word | Phones | Span | Duration (ms) | Frames | Mean F0 (Hz) | Min/Max F0 (Hz) | Mean Energy |")

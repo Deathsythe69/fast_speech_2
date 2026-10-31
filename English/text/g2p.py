@@ -2,9 +2,8 @@
 Integrates CMUdict, g2p_en with POS-based heteronym handling, and neural OOV fallback.
 """
 
-import re
-import nltk
 from g2p_en import G2p
+
 from .symbols import symbols
 
 _symbol_to_id = {s: i for i, s in enumerate(symbols)}
@@ -42,9 +41,7 @@ def text_to_phonemes_en(text):
     # Map spaces and punctuations into valid silence/punctuation tokens
     result = []
     for p in phones:
-        if p == " ":
-            result.append("sp")
-        elif p in [".", ",", "!", "?", ";", ":"]:
+        if p == " " or p in [".", ",", "!", "?", ";", ":"]:
             result.append("sp")
         else:
             result.append(p)

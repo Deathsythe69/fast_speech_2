@@ -79,13 +79,9 @@ def number_to_telugu(n: int) -> str:
 def ordinal_to_telugu(n: int) -> str:
     """Converts a cardinal integer into its Telugu ordinal word (e.g. 12 -> పన్నెండవ)."""
     card = number_to_telugu(n)
-    if card.endswith("ి"):
+    if card.endswith("ి") or card.endswith("ు"):
         return card[:-1] + "వ"
-    elif card.endswith("ు"):
-        return card[:-1] + "వ"
-    elif card.endswith("ై"):
-        return card + "వ"
-    elif card.endswith("ున్న"):
+    elif card.endswith("ై") or card.endswith("ున్న"):
         return card + "వ"
     return card + "వ"
 

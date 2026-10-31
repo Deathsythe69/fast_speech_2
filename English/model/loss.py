@@ -1,12 +1,12 @@
 import torch
-import torch.nn as nn
+from torch import nn
 
 
 class FastSpeech2Loss(nn.Module):
     """ FastSpeech2 Loss """
 
     def __init__(self, preprocess_config, model_config):
-        super(FastSpeech2Loss, self).__init__()
+        super().__init__()
         self.pitch_feature_level = preprocess_config["preprocessing"]["pitch"][
             "feature"
         ]

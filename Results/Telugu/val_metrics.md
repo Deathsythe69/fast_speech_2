@@ -1,6 +1,6 @@
 # Quantitative Validation Metrics — Telugu *(Provisional dry-run on validation subset; CPU mode)*
 
-- **Checkpoint**: `C:\Users\Panig\OneDrive\Documents\fast_speech_2\checkpoints\telugu\last.pth` (Step 1000)
+- **Checkpoint**: `C:\Users\Panig\OneDrive\Documents\fast_speech_2\Telugu\checkpoints\best.pth` (Step 1000)
 - **Evaluation Device**: `CPU`
 - **Evaluated Utterances**: 25
 - **Status**: `Provisional`

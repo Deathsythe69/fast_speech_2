@@ -14,35 +14,35 @@ Generated from synthesized test sentences using predicted duration, pitch (F0), 
 ### T1
 - **Raw Text**: న్యూరోఫార్మకోలాజికల్ పరిశోధనలో నూతన ఔషధాల ప్రభావాన్ని విశ్లేషించారు.
 - **Normalized Text**: న్యూరోఫార్మకోలాజికల్ పరిశోధనలో నూతన ఔషధాల ప్రభావాన్ని విశ్లేషించారు.
-- **Checkpoint**: `C:\Users\Panig\OneDrive\Documents\fast_speech_2\checkpoints\telugu\last.pth` (Step 1000) | **Speaker**: `default`
+- **Checkpoint**: `C:\Users\Panig\OneDrive\Documents\fast_speech_2\Telugu\checkpoints\best.pth` (Step 1000) | **Speaker**: `default`
 - **Speaking Rate**: 70.29 symbols/s | **Total Frames**: 87
 - **F0 Declination**: -7.34 Hz (-0.53 st) relative to utterance mean (241.37 Hz)
 
 ### T2a
 - **Raw Text**: తాడుపై అతని పట్టు చాలా బలంగా ఉంది.
 - **Normalized Text**: తాడుపై అతని పట్టు చాలా బలంగా ఉంది.
-- **Checkpoint**: `C:\Users\Panig\OneDrive\Documents\fast_speech_2\checkpoints\telugu\last.pth` (Step 1000) | **Speaker**: `default`
+- **Checkpoint**: `C:\Users\Panig\OneDrive\Documents\fast_speech_2\Telugu\checkpoints\best.pth` (Step 1000) | **Speaker**: `default`
 - **Speaking Rate**: 65.97 symbols/s | **Total Frames**: 47
 - **F0 Declination**: -18.09 Hz (-1.4 st) relative to utterance mean (232.93 Hz)
 
 ### T2b
 - **Raw Text**: ఆమె పట్టుచీరను ధరించి వేడుకకు వచ్చింది.
 - **Normalized Text**: ఆమె పట్టుచీరను ధరించి వేడుకకు వచ్చింది.
-- **Checkpoint**: `C:\Users\Panig\OneDrive\Documents\fast_speech_2\checkpoints\telugu\last.pth` (Step 1000) | **Speaker**: `default`
+- **Checkpoint**: `C:\Users\Panig\OneDrive\Documents\fast_speech_2\Telugu\checkpoints\best.pth` (Step 1000) | **Speaker**: `default`
 - **Speaking Rate**: 73.57 symbols/s | **Total Frames**: 48
 - **F0 Declination**: 17.87 Hz (1.29 st) relative to utterance mean (231.34 Hz)
 
 ### T3
 - **Raw Text**: పులి అడవిలో నిశ్శబ్దంగా నడిచింది.
 - **Normalized Text**: పులి అడవిలో నిశ్శబ్దంగా నడిచింది.
-- **Checkpoint**: `C:\Users\Panig\OneDrive\Documents\fast_speech_2\checkpoints\telugu\last.pth` (Step 1000) | **Speaker**: `default`
+- **Checkpoint**: `C:\Users\Panig\OneDrive\Documents\fast_speech_2\Telugu\checkpoints\best.pth` (Step 1000) | **Speaker**: `default`
 - **Speaking Rate**: 69.73 symbols/s | **Total Frames**: 42
 - **F0 Declination**: -2.29 Hz (-0.18 st) relative to utterance mean (224.75 Hz)
 
 ### T4
 - **Raw Text**: ఈ సమావేశం 2026 నవంబర్ 12వ తేదీ ఉదయం 10:45 గంటలకు ప్రారంభమవుతుంది, సమయానికి సిద్ధంగా ఉండండి.
 - **Normalized Text**: ఈ సమావేశం రెండు వేల ఇరవై ఆరు నవంబర్ పన్నెండవ తేదీ ఉదయం పది నలభై ఐదు గంటలకు ప్రారంభమవుతుంది, సమయానికి సిద్ధంగా ఉండండి.
-- **Checkpoint**: `C:\Users\Panig\OneDrive\Documents\fast_speech_2\checkpoints\telugu\last.pth` (Step 1000) | **Speaker**: `default`
+- **Checkpoint**: `C:\Users\Panig\OneDrive\Documents\fast_speech_2\Telugu\checkpoints\best.pth` (Step 1000) | **Speaker**: `default`
 - **Speaking Rate**: 75.57 symbols/s | **Total Frames**: 155
 - **F0 Declination**: -30.71 Hz (-2.39 st) relative to utterance mean (238.03 Hz)
 

@@ -1,9 +1,10 @@
 """Text processing module for Telugu FastSpeech 2."""
 
 import re
-from .symbols import symbols
+
+from .g2p import phonemes_to_sequence_te, text_to_phonemes_te
 from .normalizer import normalize_text_te
-from .g2p import text_to_phonemes_te, phonemes_to_sequence_te
+from .symbols import symbols
 
 _symbol_to_id = {s: i for i, s in enumerate(symbols)}
 _id_to_symbol = {i: s for i, s in enumerate(symbols)}
@@ -40,7 +41,6 @@ def sequence_to_text(sequence):
     for symbol_id in sequence:
         if symbol_id in _id_to_symbol:
             s = _id_to_symbol[symbol_id]
-            if s.startswith("@"):
-                s = s[1:]
+            s = s.removeprefix("@")
             result.append(s)
     return " ".join(result)

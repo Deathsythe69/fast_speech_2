@@ -1,10 +1,10 @@
 """Unit tests for FastSpeech 2 inference, variance plots, and quantitative outputs (Phase 5)."""
 
-import os
 import json
 from pathlib import Path
-import pytest
+
 import numpy as np
+import pytest
 import soundfile as sf
 
 ROOT_DIR = Path(__file__).resolve().parent.parent

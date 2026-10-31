@@ -1,9 +1,11 @@
 """Unit tests for English text frontend (Phase 3)."""
 
 import json
+
 import pytest
+
+from English.text.g2p import phonemes_to_sequence_en, text_to_phonemes_en
 from English.text.normalizer import normalize_text_en
-from English.text.g2p import text_to_phonemes_en, phonemes_to_sequence_en
 from English.text.symbols import symbols
 
 _valid_symbol_set = set(symbols)

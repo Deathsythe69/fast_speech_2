@@ -1,8 +1,6 @@
-from collections import OrderedDict
 
 import torch
-import torch.nn as nn
-import numpy as np
+from torch import nn
 from torch.nn import functional as F
 
 from .SubLayers import MultiHeadAttention, PositionwiseFeedForward
@@ -12,7 +10,7 @@ class FFTBlock(torch.nn.Module):
     """FFT Block"""
 
     def __init__(self, d_model, n_head, d_k, d_v, d_inner, kernel_size, dropout=0.1):
-        super(FFTBlock, self).__init__()
+        super().__init__()
         self.slf_attn = MultiHeadAttention(n_head, d_model, d_k, d_v, dropout=dropout)
         self.pos_ffn = PositionwiseFeedForward(
             d_model, d_inner, kernel_size, dropout=dropout
@@ -42,7 +40,7 @@ class ConvNorm(torch.nn.Module):
         bias=True,
         w_init_gain="linear",
     ):
-        super(ConvNorm, self).__init__()
+        super().__init__()
 
         if padding is None:
             assert kernel_size % 2 == 1
@@ -77,7 +75,7 @@ class PostNet(nn.Module):
         postnet_n_convolutions=5,
     ):
 
-        super(PostNet, self).__init__()
+        super().__init__()
         self.convolutions = nn.ModuleList()
 
         self.convolutions.append(

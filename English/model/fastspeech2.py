@@ -1,15 +1,13 @@
-import os
 import json
+import os
 
-import torch
-import torch.nn as nn
-import torch.nn.functional as F
+from torch import nn
 
 try:
-    from transformer import Encoder, Decoder, PostNet
+    from transformer import Decoder, Encoder, PostNet
     from utils.tools import get_mask_from_lengths
 except (ImportError, ValueError):
-    from ..transformer import Encoder, Decoder, PostNet
+    from ..transformer import Decoder, Encoder, PostNet
     from ..utils.tools import get_mask_from_lengths
 
 from .modules import VarianceAdaptor
@@ -19,7 +17,7 @@ class FastSpeech2(nn.Module):
     """ FastSpeech2 """
 
     def __init__(self, preprocess_config, model_config):
-        super(FastSpeech2, self).__init__()
+        super().__init__()
         self.model_config = model_config
 
         self.encoder = Encoder(model_config)

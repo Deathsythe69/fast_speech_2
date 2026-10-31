@@ -2,8 +2,9 @@
 
 import os
 import sys
-import yaml
+
 import torch
+import yaml
 
 workspace_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if workspace_root not in sys.path:

@@ -1,8 +1,4 @@
 try:
-    from . import tools
-    from . import stft
-    from . import audio_processing
+    from . import audio_processing, stft, tools
 except (ImportError, ValueError):
-    import audio.tools as tools
-    import audio.stft as stft
-    import audio.audio_processing as audio_processing
+    from audio import audio_processing, stft, tools

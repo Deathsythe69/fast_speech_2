@@ -14,35 +14,35 @@ Generated from synthesized test sentences using predicted duration, pitch (F0), 
 ### E1
 - **Raw Text**: The antidisestablishmentarianism movement gained considerable momentum during the parliamentary proceedings.
 - **Normalized Text**: The antidisestablishmentarianism movement gained considerable momentum during the parliamentary proceedings.
-- **Checkpoint**: `C:\Users\Panig\OneDrive\Documents\fast_speech_2\checkpoints\english\last.pth` (Step 1000) | **Speaker**: `speaker_0`
+- **Checkpoint**: `C:\Users\Panig\OneDrive\Documents\fast_speech_2\English\checkpoints\best.pth` (Step 1000) | **Speaker**: `speaker_0`
 - **Speaking Rate**: 85.24 symbols/s | **Total Frames**: 97
 - **F0 Declination**: -1.84 Hz (-0.15 st) relative to utterance mean (219.81 Hz)
 
 ### E2a
 - **Raw Text**: The orchestra's conduct during the ceremony was praised by the audience.
 - **Normalized Text**: The orchestra's conduct during the ceremony was praised by the audience.
-- **Checkpoint**: `C:\Users\Panig\OneDrive\Documents\fast_speech_2\checkpoints\english\last.pth` (Step 1000) | **Speaker**: `speaker_0`
+- **Checkpoint**: `C:\Users\Panig\OneDrive\Documents\fast_speech_2\English\checkpoints\best.pth` (Step 1000) | **Speaker**: `speaker_0`
 - **Speaking Rate**: 86.13 symbols/s | **Total Frames**: 61
 - **F0 Declination**: -7.53 Hz (-0.59 st) relative to utterance mean (223.32 Hz)
 
 ### E2b
 - **Raw Text**: The researchers will conduct an experiment to evaluate the proposed method.
 - **Normalized Text**: The researchers will conduct an experiment to evaluate the proposed method.
-- **Checkpoint**: `C:\Users\Panig\OneDrive\Documents\fast_speech_2\checkpoints\english\last.pth` (Step 1000) | **Speaker**: `speaker_0`
+- **Checkpoint**: `C:\Users\Panig\OneDrive\Documents\fast_speech_2\English\checkpoints\best.pth` (Step 1000) | **Speaker**: `speaker_0`
 - **Speaking Rate**: 86.13 symbols/s | **Total Frames**: 66
 - **F0 Declination**: 0.7 Hz (0.05 st) relative to utterance mean (222.14 Hz)
 
 ### E3
 - **Raw Text**: The rhyth m of the orchestra changed unexpectedly.
 - **Normalized Text**: The rhyth m of the orchestra changed unexpectedly.
-- **Checkpoint**: `C:\Users\Panig\OneDrive\Documents\fast_speech_2\checkpoints\english\last.pth` (Step 1000) | **Speaker**: `speaker_0`
+- **Checkpoint**: `C:\Users\Panig\OneDrive\Documents\fast_speech_2\English\checkpoints\best.pth` (Step 1000) | **Speaker**: `speaker_0`
 - **Speaking Rate**: 86.13 symbols/s | **Total Frames**: 44
 - **F0 Declination**: -46.15 Hz (-4.01 st) relative to utterance mean (223.42 Hz)
 
 ### E4
 - **Raw Text**: The meeting will start at 10:45 AM on 12 November 2026, so andaroo should arrive on time.
 - **Normalized Text**: The meeting will start at ten forty-five A M on twelve November twenty twenty-six, so andaroo should arrive on time.
-- **Checkpoint**: `C:\Users\Panig\OneDrive\Documents\fast_speech_2\checkpoints\english\last.pth` (Step 1000) | **Speaker**: `speaker_0`
+- **Checkpoint**: `C:\Users\Panig\OneDrive\Documents\fast_speech_2\English\checkpoints\best.pth` (Step 1000) | **Speaker**: `speaker_0`
 - **Speaking Rate**: 86.13 symbols/s | **Total Frames**: 100
 - **F0 Declination**: -44.51 Hz (-3.95 st) relative to utterance mean (218.22 Hz)
 

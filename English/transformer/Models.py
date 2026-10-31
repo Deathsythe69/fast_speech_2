@@ -1,15 +1,17 @@
-import torch
-import torch.nn as nn
 import numpy as np
+import torch
+from torch import nn
 
 try:
+    from ..text.symbols import symbols
     from . import Constants
     from .Layers import FFTBlock
-    from ..text.symbols import symbols
 except (ImportError, ValueError):
-    import transformer.Constants as Constants
-    from .Layers import FFTBlock
     from text.symbols import symbols
+
+    from transformer import Constants
+
+    from .Layers import FFTBlock
 
 
 def get_sinusoid_encoding_table(n_position, d_hid, padding_idx=None):
@@ -39,7 +41,7 @@ class Encoder(nn.Module):
     """ Encoder """
 
     def __init__(self, config):
-        super(Encoder, self).__init__()
+        super().__init__()
 
         n_position = config["max_seq_len"] + 1
         n_src_vocab = len(symbols) + 1
@@ -109,7 +111,7 @@ class Decoder(nn.Module):
     """ Decoder """
 
     def __init__(self, config):
-        super(Decoder, self).__init__()
+        super().__init__()
 
         n_position = config["max_seq_len"] + 1
         d_word_vec = config["transformer"]["decoder_hidden"]

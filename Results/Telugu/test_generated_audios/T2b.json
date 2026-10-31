@@ -90,7 +90,7 @@
   ],
   "speaker": "default",
   "speaker_id": 0,
-  "checkpoint": "C:\\Users\\Panig\\OneDrive\\Documents\\fast_speech_2\\checkpoints\\telugu\\last.pth",
+  "checkpoint": "C:\\Users\\Panig\\OneDrive\\Documents\\fast_speech_2\\Telugu\\checkpoints\\best.pth",
   "step": 1000,
   "controls": {
     "duration": 1.0,
@@ -101,7 +101,7 @@
     "symbols_count": 41,
     "frames_count": 48,
     "audio_seconds": 0.5572789115646258,
-    "rtf": 0.27455667732283473
+    "rtf": 0.28371900552883744
   },
   "word_to_symbol_map": [
     {

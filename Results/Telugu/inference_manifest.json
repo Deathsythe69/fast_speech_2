@@ -1,9 +1,9 @@
 {
   "language": "Telugu",
   "provisional": true,
-  "timestamp": "2026-10-31T14:18:24.587570+00:00",
+  "timestamp": "2026-10-31T15:16:50.317433+00:00",
   "checkpoint": {
-    "path": "C:\\Users\\Panig\\OneDrive\\Documents\\fast_speech_2\\checkpoints\\telugu\\last.pth",
+    "path": "C:\\Users\\Panig\\OneDrive\\Documents\\fast_speech_2\\Telugu\\checkpoints\\best.pth",
     "step": 1000,
     "sha256": "844b2de8b574f90cd26fed040a8ad73b299717494ca694de1c68482f1580e47b"
   },
@@ -14,10 +14,10 @@
     "energy": 1.0
   },
   "commands": [
-    "C:\\Users\\Panig\\OneDrive\\Documents\\fast_speech_2\\.venv\\Scripts\\python.exe C:\\Users\\Panig\\OneDrive\\Documents\\fast_speech_2\\Telugu\\inference.py --checkpoint C:\\Users\\Panig\\OneDrive\\Documents\\fast_speech_2\\checkpoints\\telugu\\last.pth --out_dir C:\\Users\\Panig\\OneDrive\\Documents\\fast_speech_2\\Results\\Telugu --device cpu --pitch_control 1.0 --energy_control 1.0 --duration_control 1.0",
+    "C:\\Users\\Panig\\OneDrive\\Documents\\fast_speech_2\\.venv\\Scripts\\python.exe C:\\Users\\Panig\\OneDrive\\Documents\\fast_speech_2\\Telugu\\inference.py --checkpoint C:\\Users\\Panig\\OneDrive\\Documents\\fast_speech_2\\Telugu\\checkpoints\\best.pth --out_dir C:\\Users\\Panig\\OneDrive\\Documents\\fast_speech_2\\Results\\Telugu --device cpu --pitch_control 1.0 --energy_control 1.0 --duration_control 1.0",
     "C:\\Users\\Panig\\OneDrive\\Documents\\fast_speech_2\\.venv\\Scripts\\python.exe C:\\Users\\Panig\\OneDrive\\Documents\\fast_speech_2\\tools\\plot_variance.py --lang telugu --out_dir C:\\Users\\Panig\\OneDrive\\Documents\\fast_speech_2\\Results\\Telugu",
     "C:\\Users\\Panig\\OneDrive\\Documents\\fast_speech_2\\.venv\\Scripts\\python.exe C:\\Users\\Panig\\OneDrive\\Documents\\fast_speech_2\\tools\\sentence_stats.py --lang telugu --results_dir C:\\Users\\Panig\\OneDrive\\Documents\\fast_speech_2\\Results",
-    "C:\\Users\\Panig\\OneDrive\\Documents\\fast_speech_2\\.venv\\Scripts\\python.exe C:\\Users\\Panig\\OneDrive\\Documents\\fast_speech_2\\tools\\eval_val.py --lang telugu --checkpoint C:\\Users\\Panig\\OneDrive\\Documents\\fast_speech_2\\checkpoints\\telugu\\last.pth --device cpu --results_dir C:\\Users\\Panig\\OneDrive\\Documents\\fast_speech_2\\Results"
+    "C:\\Users\\Panig\\OneDrive\\Documents\\fast_speech_2\\.venv\\Scripts\\python.exe C:\\Users\\Panig\\OneDrive\\Documents\\fast_speech_2\\tools\\eval_val.py --lang telugu --checkpoint C:\\Users\\Panig\\OneDrive\\Documents\\fast_speech_2\\Telugu\\checkpoints\\best.pth --device cpu --results_dir C:\\Users\\Panig\\OneDrive\\Documents\\fast_speech_2\\Results"
   ],
   "outputs": {
     "audio_count": 5,

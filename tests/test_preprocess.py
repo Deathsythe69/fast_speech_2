@@ -1,12 +1,13 @@
 """Unit tests for FastSpeech 2 preprocessing and feature extraction (Phase 3)."""
 
-import os
 import json
-import yaml
-import pytest
+import os
+
 import numpy as np
+import pytest
 import soundfile as sf
 import tgt
+
 from English.preprocessor.preprocessor import Preprocessor as EnPreprocessor
 
 

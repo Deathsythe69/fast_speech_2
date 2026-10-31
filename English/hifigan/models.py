@@ -1,8 +1,8 @@
 import torch
-import torch.nn as nn
 import torch.nn.functional as F
+from torch import nn
 from torch.nn import Conv1d, ConvTranspose1d
-from torch.nn.utils import weight_norm, remove_weight_norm
+from torch.nn.utils import remove_weight_norm, weight_norm
 
 LRELU_SLOPE = 0.1
 
@@ -19,7 +19,7 @@ def get_padding(kernel_size, dilation=1):
 
 class ResBlock(torch.nn.Module):
     def __init__(self, h, channels, kernel_size=3, dilation=(1, 3, 5)):
-        super(ResBlock, self).__init__()
+        super().__init__()
         self.h = h
         self.convs1 = nn.ModuleList(
             [
@@ -111,7 +111,7 @@ class ResBlock(torch.nn.Module):
 
 class Generator(torch.nn.Module):
     def __init__(self, h):
-        super(Generator, self).__init__()
+        super().__init__()
         self.h = h
         self.num_kernels = len(h.resblock_kernel_sizes)
         self.num_upsamples = len(h.upsample_rates)

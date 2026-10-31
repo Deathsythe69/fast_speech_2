@@ -1,13 +1,12 @@
-import os
 import json
+import os
 
+import matplotlib
+import numpy as np
 import torch
 import torch.nn.functional as F
-import numpy as np
-import matplotlib
-from scipy.io import wavfile
 from matplotlib import pyplot as plt
-
+from scipy.io import wavfile
 
 matplotlib.use("Agg")
 
@@ -194,7 +193,7 @@ def synth_samples(targets, predictions, vocoder, model_config, preprocess_config
             stats,
             ["Synthetized Spectrogram"],
         )
-        plt.savefig(os.path.join(path, "{}.png".format(basename)))
+        plt.savefig(os.path.join(path, f"{basename}.png"))
         plt.close()
 
     from .model import vocoder_infer
@@ -207,7 +206,7 @@ def synth_samples(targets, predictions, vocoder, model_config, preprocess_config
 
     sampling_rate = preprocess_config["preprocessing"]["audio"]["sampling_rate"]
     for wav, basename in zip(wav_predictions, basenames):
-        wavfile.write(os.path.join(path, "{}.wav".format(basename)), sampling_rate, wav)
+        wavfile.write(os.path.join(path, f"{basename}.wav"), sampling_rate, wav)
 
 
 def plot_mel(data, stats, titles):
@@ -269,7 +268,7 @@ def pad_1D(inputs, PAD=0):
         )
         return x_padded
 
-    max_len = max((len(x) for x in inputs))
+    max_len = max(len(x) for x in inputs)
     padded = np.stack([pad_data(x, max_len, PAD) for x in inputs])
 
     return padded
