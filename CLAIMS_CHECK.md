@@ -71,3 +71,4 @@
 3. **Hardware Assessment**:
    - Local environment has no usable CUDA GPU (`check_env.py`: `CUDA available: False`).
    - All benchmarks and inference tests were validated in CPU mode with deterministic seeding (`torch.device("cpu")`), yielding an RTF of 0.28–0.34 on x86-64 CPU cores.
+
