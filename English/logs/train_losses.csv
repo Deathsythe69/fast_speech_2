@@ -1,0 +1,2 @@
+step,epoch,lr,total,mel,postnet_mel,pitch,energy,duration,grad_norm,seconds_per_step
+10,3,0.000002,43822.386719,0.906889,1.374930,43816.878906,0.888161,2.339506,9576.659180,0.678597

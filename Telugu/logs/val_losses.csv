@@ -1,0 +1,1 @@
+step,epoch,lr,total,mel,postnet_mel,pitch,energy,duration,grad_norm,seconds_per_step
