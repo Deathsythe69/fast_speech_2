@@ -38,12 +38,20 @@ class VarianceAdaptor(nn.Module):
         n_bins = model_config["variance_embedding"]["n_bins"]
         assert pitch_quantization in ["linear", "log"]
         assert energy_quantization in ["linear", "log"]
-        with open(
-            os.path.join(preprocess_config["path"]["preprocessed_path"], "stats.json")
-        ) as f:
-            stats = json.load(f)
-            pitch_min, pitch_max = stats["pitch"][:2]
-            energy_min, energy_max = stats["energy"][:2]
+        stats_path = os.path.join(preprocess_config["path"]["preprocessed_path"], "stats.json")
+        if not os.path.exists(stats_path):
+            local_stats = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "stats.json")
+            if os.path.exists(local_stats):
+                stats_path = local_stats
+
+        if os.path.exists(stats_path):
+            with open(stats_path, "r", encoding="utf-8") as f:
+                stats = json.load(f)
+                pitch_min, pitch_max = stats["pitch"][:2]
+                energy_min, energy_max = stats["energy"][:2]
+        else:
+            pitch_min, pitch_max = 50.0, 500.0
+            energy_min, energy_max = 0.0, 80.0
 
         if pitch_quantization == "log":
             self.pitch_bins = nn.Parameter(

@@ -31,13 +31,18 @@ class FastSpeech2(nn.Module):
 
         self.speaker_emb = None
         if model_config["multi_speaker"]:
-            with open(
-                os.path.join(
-                    preprocess_config["path"]["preprocessed_path"], "speakers.json"
-                ),
-                "r",
-            ) as f:
-                n_speaker = len(json.load(f))
+            spk_path = os.path.join(
+                preprocess_config["path"]["preprocessed_path"], "speakers.json"
+            )
+            if not os.path.exists(spk_path):
+                local_spk = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "speakers.json")
+                if os.path.exists(local_spk):
+                    spk_path = local_spk
+
+            n_speaker = 1
+            if os.path.exists(spk_path):
+                with open(spk_path, "r", encoding="utf-8") as f:
+                    n_speaker = max(len(json.load(f)), 1)
             self.speaker_emb = nn.Embedding(
                 n_speaker,
                 model_config["transformer"]["encoder_hidden"],

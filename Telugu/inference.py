@@ -118,13 +118,17 @@ def run_inference(args):
     model.requires_grad_ = False
 
     # 2. Load Vocoder
-    vocoder_dir = os.path.join(parent_path, "vocoder")
-    if not os.path.exists(vocoder_dir):
+    vocoder_dir = os.path.join(dir_path, "hifigan")
+    if not os.path.exists(os.path.join(vocoder_dir, "generator_universal.pth.tar")):
+        vocoder_dir = os.path.join(parent_path, "vocoder")
+    if not os.path.exists(os.path.join(vocoder_dir, "generator_universal.pth.tar")):
         vocoder_dir = "vocoder"
     vocoder = load_vocoder(vocoder_dir, device)
 
     # 3. Load Stats
-    stats_path = os.path.join(config["path"]["preprocessed_path"], "stats.json")
+    stats_path = os.path.join(dir_path, "stats.json")
+    if not os.path.exists(stats_path):
+        stats_path = os.path.join(config["path"]["preprocessed_path"], "stats.json")
     if not os.path.exists(stats_path):
         stats_path = os.path.join(parent_path, "preprocessed_data", "telugu", "stats.json")
     with open(stats_path, "r", encoding="utf-8") as f:
@@ -133,8 +137,17 @@ def run_inference(args):
     energy_min, energy_max, energy_mean, energy_std = stats["energy"]
 
     # 4. Load test sentences
-    with open(args.test_json, "r", encoding="utf-8") as f:
-        test_data = json.load(f)["Telugu"]
+    if os.path.exists(args.test_json):
+        with open(args.test_json, "r", encoding="utf-8") as f:
+            test_data = json.load(f)["Telugu"]
+    else:
+        test_data = {
+            "T1": "న్యూరోఫార్మకోలాజికల్ పరిశోధనలో నూతన ఔషధాల ప్రభావాన్ని విశ్లేషించారు.",
+            "T2a": "తాడుపై అతని పట్టు చాలా బలంగా ఉంది.",
+            "T2b": "ఆమె పట్టుచీరను ధరించి వేడుకకు వచ్చింది.",
+            "T3": "పులి అడవిలో వేగంగా పరిగెత్తింది.",
+            "T4": "2026 నవంబర్ 12వ తేదీ ఉదయం 10:45 గంటలకు సమావేశం ప్రారంభమవుతుంది, అందరూ సిద్ధంగా ఉండండి.",
+        }
 
     print(f"\n{'='*70}")
     print(f"{'ID':<6} | {'Symbols':<8} | {'Frames':<8} | {'Audio (s)':<10} | {'RTF':<8}")

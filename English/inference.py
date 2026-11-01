@@ -137,13 +137,17 @@ def run_inference(args):
     model.requires_grad_ = False
 
     # 2. Load Vocoder
-    vocoder_dir = os.path.join(parent_path, "vocoder")
-    if not os.path.exists(vocoder_dir):
+    vocoder_dir = os.path.join(dir_path, "hifigan")
+    if not os.path.exists(os.path.join(vocoder_dir, "generator_universal.pth.tar")):
+        vocoder_dir = os.path.join(parent_path, "vocoder")
+    if not os.path.exists(os.path.join(vocoder_dir, "generator_universal.pth.tar")):
         vocoder_dir = "vocoder"
     vocoder = load_vocoder(vocoder_dir, device)
 
     # 3. Load stats
-    stats_path = os.path.join(config["path"]["preprocessed_path"], "stats.json")
+    stats_path = os.path.join(dir_path, "stats.json")
+    if not os.path.exists(stats_path):
+        stats_path = os.path.join(config["path"]["preprocessed_path"], "stats.json")
     if not os.path.exists(stats_path):
         stats_path = os.path.join(parent_path, "preprocessed_data", "english", "stats.json")
     with open(stats_path, "r", encoding="utf-8") as f:
@@ -154,7 +158,9 @@ def run_inference(args):
     # 4. Speaker setup
     train_csv = os.path.join(parent_path, "data", "english", "train.csv")
     chosen_speaker = args.speaker or get_dominant_speaker(train_csv)
-    speakers_map_path = os.path.join(config["path"]["preprocessed_path"], "speakers.json")
+    speakers_map_path = os.path.join(dir_path, "speakers.json")
+    if not os.path.exists(speakers_map_path):
+        speakers_map_path = os.path.join(config["path"]["preprocessed_path"], "speakers.json")
     if not os.path.exists(speakers_map_path):
         speakers_map_path = os.path.join(parent_path, "preprocessed_data", "english", "speakers.json")
 
@@ -165,8 +171,17 @@ def run_inference(args):
         speaker_id = spk_map.get(chosen_speaker, 0)
 
     # 5. Load test sentences
-    with open(args.test_json, "r", encoding="utf-8") as f:
-        test_data = json.load(f)["English"]
+    if os.path.exists(args.test_json):
+        with open(args.test_json, "r", encoding="utf-8") as f:
+            test_data = json.load(f)["English"]
+    else:
+        test_data = {
+            "E1": "The antidisestablishmentarianism movement gained considerable momentum during the parliamentary proceedings.",
+            "E2a": "The orchestra's conduct during the ceremony was praised by the audience.",
+            "E2b": "The researchers will conduct the experiment under strictly controlled laboratory conditions.",
+            "E3": "The dancer moves with an unusual rhyth m that captivates everyone in the theater.",
+            "E4": "The flight lands at 10:45 AM on 12 November 2026, so andaroo should arrive on time.",
+        }
 
     print(f"\n{'='*70}")
     print(f"{'ID':<6} | {'Symbols':<8} | {'Frames':<8} | {'Audio (s)':<10} | {'RTF':<8}")
