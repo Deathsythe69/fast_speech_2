@@ -1,127 +1,96 @@
-# FastSpeech 2 Text-to-Speech (English + Telugu)
+<div align="center">
 
-A production-grade, non-autoregressive Text-to-Speech (TTS) system implementing two separate **FastSpeech 2** acoustic models:
-1. **English Model**: Multi-speaker conditioned model trained on the IISc Svarah Indian English corpus (78-symbol ARPAbet phonetic inventory).
-2. **Telugu Model**: Single-speaker dedicated model trained on the IndicTTS Telugu female voice corpus (58-symbol rule-based phonetic inventory).
+# 🗣️ FastSpeech 2 Text-to-Speech
+### Turn written **English** and **Telugu** into natural-sounding speech
 
-Audio output is generated at **22,050 Hz, 16-bit mono PCM WAV** via a universal **HiFi-GAN** neural vocoder.
+![Python](https://img.shields.io/badge/Python-3.10%20|%203.11-3776AB?logo=python&logoColor=white)
+![PyTorch](https://img.shields.io/badge/PyTorch-%E2%89%A5%202.0-EE4C2C?logo=pytorch&logoColor=white)
+![Languages](https://img.shields.io/badge/Languages-English%20%7C%20Telugu-2ea44f)
+![Audio](https://img.shields.io/badge/Audio-22.05%20kHz%20WAV-blue)
+![Model](https://img.shields.io/badge/Model-FastSpeech%202-orange)
 
----
+**Type a sentence → get a spoken audio file.**
+Two separate models, one per language, trained from scratch on Indian speech data.
 
-## 1. Directory Structure
+[Quick start](#-quick-start) · [Listen to samples](#-listen-to-the-samples) · [Results](#-results) · [Report](Report/Technical_Report.pdf)
 
-The repository strictly conforms to the requested layout:
-
-```
-fast_speech_2/
-├── English/                          # Self-contained English acoustic model & pipeline
-│   ├── train.py                      # Standalone English training entrypoint
-│   ├── preprocess.py                 # Feature extraction & non-leaking stats computation
-│   ├── inference.py                  # Standalone CLI inference & evaluation script
-│   ├── config.yaml                   # English hyperparameters and dataset configuration
-│   └── checkpoints/                  # Trained model checkpoints
-│       ├── best.pth                  # Optimal validation loss checkpoint (140.5 MB)
-│       └── last.pth                  # Final checkpoint (140.5 MB)
-│
-├── Telugu/                           # Self-contained Telugu acoustic model & pipeline
-│   ├── train.py                      # Standalone Telugu training entrypoint
-│   ├── preprocess.py                 # Feature extraction & non-leaking stats computation
-│   ├── inference.py                  # Standalone CLI inference & evaluation script
-│   ├── config.yaml                   # Telugu hyperparameters and dataset configuration
-│   └── checkpoints/                  # Trained model checkpoints
-│       ├── best.pth                  # Optimal validation loss checkpoint (140.4 MB)
-│       └── last.pth                  # Final checkpoint (140.4 MB)
-│
-├── Results/                          # Evaluation deliverables
-│   ├── English/
-│   │   ├── training_loss.png         # Multi-metric training loss trajectory
-│   │   ├── validation_loss.png       # Out-of-sample validation loss curve
-│   │   ├── test_generated_audios/    # Synthesized 22.05 kHz WAV files
-│   │   │   ├── E1.wav                # Multisyllabic stress test (antidisestablishmentarianism)
-│   │   │   ├── E2a.wav               # Noun stress on 'conduct' (/K AA1 N D AH0 K T/)
-│   │   │   ├── E2b.wav               # Verb stress on 'conduct' (/K AH0 N D AH1 K T/)
-│   │   │   ├── E3.wav                # Typo space test ('rhyth m')
-│   │   │   └── E4.wav                # Numeral expansion ('10:45 AM') & loanword ('andaroo')
-│   │   └── variance_adaptor_plots/   # Variance adaptor visualizations
-│   │       ├── duration/             # Duration (ms) and phoneme alignment plots (E1–E4)
-│   │       ├── pitch/                # Fundamental frequency (F0 Hz) contour plots (E1–E4)
-│   │       └── energy/               # Energy amplitude envelope plots (E1–E4)
-│   │
-│   └── Telugu/
-│       ├── training_loss.png         # Multi-metric training loss trajectory
-│       ├── validation_loss.png       # Out-of-sample validation loss curve
-│       ├── test_generated_audios/    # Synthesized 22.05 kHz WAV files
-│       │   ├── T1.wav                # Pharmaceutical loanword (న్యూరోఫార్మకోలాజికల్)
-│       │   ├── T2a.wav               # Homograph 'పట్టు' as physical grip (head noun)
-│       │   ├── T2b.wav               # Homograph 'పట్టు' in silk saree compound
-│       │   ├── T3.wav                # Concise narrative intonation (పులి అడవిలో...)
-│       │   └── T4.wav                # Date/time numeral expansion ('2026', '10:45', '12వ')
-│       └── variance_adaptor_plots/   # Variance adaptor visualizations
-│           ├── duration/             # Duration (ms) and phoneme alignment plots (T1–T4)
-│           ├── pitch/                # Fundamental frequency (F0 Hz) contour plots (T1–T4)
-│           └── energy/               # Energy amplitude envelope plots (T1–T4)
-│
-├── Report/
-│   └── Technical_Report.pdf          # 10-page comprehensive technical report
-│
-├── README.md                         # Documentation & reproduction instructions
-└── requirements.txt                  # Pinned software dependencies
-```
+</div>
 
 ---
 
-## 2. Environment Setup
+## ✨ At a glance
 
-### Prerequisites
-- Python 3.10 or 3.11
-- PyTorch >= 2.0 (CUDA or CPU)
-- SoundFile, Librosa, PyWorld, Matplotlib, PyYAML, TQDM, SciPy, NLTK, ReportLab
+| | 🇬🇧 English | 🇮🇳 Telugu |
+|---|---|---|
+| **Training data** | IISc Svarah (Indian English) | IIT Madras IndicTTS (female voice) |
+| **Speakers** | 3 | 1 |
+| **Training audio** | about 5.0 hours (3,457 utterances) | about 1.7 hours (843 utterances) |
+| **Phoneme set** | 78 symbols (ARPAbet) | 58 symbols (rule-based) |
+| **Trained for** | 20,000 steps | 20,000 steps |
+| **Checkpoint used** | step 7,000 (`best.pth`) | step 2,000 (`best.pth`) |
 
-### Installation
+All audio is produced at **22,050 Hz, 16-bit, mono** using a pretrained **HiFi-GAN** vocoder.
+
+---
+
+## 🧠 How it works (in plain words)
+
+A computer cannot read text out loud directly. It does it in steps:
+
+```mermaid
+flowchart LR
+    A["📝 Text<br/>'The flight lands at 10:45 AM'"] --> B["🔤 Clean up text<br/>numbers → words"]
+    B --> C["🔡 Phonemes<br/>(the sounds of the words)"]
+    C --> D["🧠 FastSpeech 2<br/>decides how long, how high,<br/>how loud each sound is"]
+    D --> E["📊 Mel-spectrogram<br/>(a picture of the sound)"]
+    E --> F["🔊 HiFi-GAN<br/>turns the picture into audio"]
+    F --> G["🎧 WAV file"]
+```
+
+**Why FastSpeech 2?** Older systems (like Tacotron 2) speak one small piece at a time and can stumble, repeat or skip words. FastSpeech 2 produces the whole sentence **in parallel**, so it is fast and does not lose its place.
+
+The key idea is the **variance adaptor**. Before producing sound, the model first predicts three things for every phoneme:
+
+| 🎚️ What | 💡 Meaning |
+|---|---|
+| **Duration** | how long the sound lasts |
+| **Pitch** | how high or low the voice is |
+| **Energy** | how loud it is |
+
+---
+
+## 🚀 Quick start
+
 ```bash
-# Clone the repository
+# 1. Get the code
 git clone <repo_url>
 cd fast_speech_2
 
-# Create and activate virtual environment
+# 2. Create a virtual environment
 python -m venv .venv
-source .venv/bin/activate  # On Windows: .venv\Scripts\Activate.ps1
+source .venv/bin/activate          # Windows: .venv\Scripts\Activate.ps1
 
-# Install pinned dependencies
+# 3. Install everything
 pip install -r requirements.txt
-
-# Download required NLTK tagger data for English POS heteronym G2P
 python -c "import nltk; nltk.download('averaged_perceptron_tagger_eng'); nltk.download('averaged_perceptron_tagger')"
 ```
 
----
-
-## 3. Reproduction & Execution Commands
-
-Both `English/` and `Telugu/` directories are completely self-contained and runnable on CPU or CUDA without external paths.
-
-### 3.1 Inference (Synthesizing Evaluation Sentences)
-
-Synthesize all 5 evaluation sentences, saving 22,050 Hz 16-bit mono WAVs to `Results/<Lang>/test_generated_audios/`:
+### 🎧 Generate speech
 
 ```bash
-# English Synthesis (CPU or CUDA)
-python English/inference.py \
-  --checkpoint English/checkpoints/best.pth \
-  --out_dir Results/English \
-  --device cpu
+# English
+python English/inference.py --checkpoint English/checkpoints/best.pth --out_dir Results/English --device cpu
 
-# Telugu Synthesis (CPU or CUDA)
-python Telugu/inference.py \
-  --checkpoint Telugu/checkpoints/best.pth \
-  --out_dir Results/Telugu \
-  --device cpu
+# Telugu
+python Telugu/inference.py --checkpoint Telugu/checkpoints/best.pth --out_dir Results/Telugu --device cpu
 ```
 
-#### Variance Adaptor Controls
-Inference supports real-time prosody manipulation flags (`--duration_control`, `--pitch_control`, `--energy_control`):
+Each command writes five WAV files to `Results/<Language>/test_generated_audios/`. Use `--device cuda` if you have a GPU.
+
+### 🎛️ Change how it sounds
+
 ```bash
-# Example: 20% faster tempo, 10% higher pitch on Telugu
+# 20% faster and 10% higher pitch (Telugu)
 python Telugu/inference.py \
   --checkpoint Telugu/checkpoints/best.pth \
   --duration_control 0.8 \
@@ -130,101 +99,189 @@ python Telugu/inference.py \
   --device cpu
 ```
 
-### 3.2 Preprocessing & Feature Extraction
-
-Extracts mel spectrograms, PyWorld $F_0$ pitch contours, and STFT energy features with non-leaking train-only normalization:
+<details>
+<summary><b>🛠️ Rebuild the models from scratch (preprocess and train)</b></summary>
 
 ```bash
-# English Preprocessing
+# Extract features (mel-spectrograms, pitch, energy) — normalisation uses training data only
 python English/preprocess.py English/config.yaml
-
-# Telugu Preprocessing
 python Telugu/preprocess.py Telugu/config.yaml
-```
 
-### 3.3 Training
-
-Both training scripts support single-GPU, multi-GPU, or CPU execution, gradient accumulation, Adam with Noam warmup, and full validation:
-
-```bash
-# English Training
+# Train (single GPU, multi-GPU or CPU)
 python English/train.py --config English/config.yaml --device cuda
+python Telugu/train.py  --config Telugu/config.yaml  --device cuda
 
-# Telugu Training
-python Telugu/train.py --config Telugu/config.yaml --device cuda
-
-# 100-step Smoke Test Verification on CPU
+# Quick 100-step check that everything runs
 python English/train.py --smoke_test --max_steps 100 --device cpu
-python Telugu/train.py --smoke_test --max_steps 100 --device cpu
+python Telugu/train.py  --smoke_test --max_steps 100 --device cpu
 ```
 
----
+Training setup: Adam optimiser, 4,000 warm-up steps, batch size 16, gradient clipping at 1.0, seed 1234, validation on the full validation set every 500 steps.
 
-## 4. Evaluation Test Sentences & Acoustic Analysis
-
-All 10 required evaluation test sentences were synthesized and evaluated across phoneme durations, fundamental frequency ($F_0$), and energy amplitude envelopes.
-
-| ID | Lang | Test Description & Phonetic Focus | Duration | RTF (CPU) | Symbols | Frames |
-|:---:|:---:|:---|:---:|:---:|:---:|:---:|
-| **E1** | EN | Multisyllabic stress test (*antidisestablishmentarianism*) | 10.25 s | 0.38x | 96 | 883 |
-| **E2a** | EN | Noun lexical stress on *"conduct"* (`/K AA1 N D AH0 K T/`) | 6.59 s | 0.27x | 61 | 568 |
-| **E2b** | EN | Verb lexical stress on *"conduct"* (`/K AH0 N D AH1 K T/`) | 8.58 s | 0.27x | 80 | 739 |
-| **E3** | EN | Typo space pause boundary (*"rhyth m"*) | 7.64 s | 0.27x | 71 | 658 |
-| **E4** | EN | Numeral expansion (`10:45 AM`, `12 November 2026`) + loanword (*"andaroo"*) | 10.15 s | 0.27x | 95 | 874 |
-| **T1** | TE | Pharmaceutical loanword (*న్యూరోఫార్మకోలాజికల్*) | 7.19 s | 0.05x | 71 | 619 |
-| **T2a** | TE | Homograph *"పట్టు"* as independent head noun (physical grip) | 4.54 s | 0.02x | 36 | 391 |
-| **T2b** | TE | Homograph *"పట్టు"* in compound noun (*"పట్టుచీరను"*, silk saree) | 4.46 s | 0.02x | 41 | 384 |
-| **T3** | TE | Concise narrative prosody (*పులి అడవిలో వేగంగా పరిగెత్తింది.*) | 3.85 s | 0.02x | 33 | 332 |
-| **T4** | TE | Date/time numeral expansion (`2026`, `10:45`, `12వ`) + conjuncts (*సిద్ధంగా*) | 11.24 s | 0.01x | 130 | 968 |
-
-### Summary of Key Acoustic Findings:
-1. **Lexical Stress Differentiation (E2a vs E2b)**: In E2a (noun), the primary stress vowel `/AA1/` shows longer duration and higher pitch peak (182 Hz vs 142 Hz). In E2b (verb), the second syllable `/AH1/` exhibits higher duration (152 ms) and an energy peak (195 Hz), confirming successful POS-guided stress shifting.
-2. **Abugida Homograph Analysis (T2a vs T2b)**: In T2a, *"పట్టు"* acts as an independent head noun with focal accent, producing an extended geminate occlusion on `/t_/` (115 ms) and elevated $F_0$ (265 Hz). In T2b, *"పట్టు"* is a modifier in *"పట్టుచీరను"*, where stress shifts to the head compound, reducing geminate duration to 82 ms.
-3. **Resilience to Lengthy Sequences (E1 & T1)**: FastSpeech 2 synthesizes multisyllabic sequences without phoneme skipping, word repetitions, or attention breakdown (a frequent failure mode in autoregressive models like Tacotron 2).
+</details>
 
 ---
 
-## 5. Architectural Lineage & Reference Modifications
+## 🎧 Listen to the samples
 
-Starting from `ming024/FastSpeech2`, key mathematical and structural defects were audited and resolved:
+Each language has five test sentences, chosen to be tricky on purpose.
 
-| Component | Defect in Reference Repo | Engineered Resolution |
-|:---|:---|:---|
-| **Variance Adaptor (`modules.py:124`)** | Line 124 passed `p_control` into `get_energy_embedding` instead of `e_control`. | Passed `e_control`, strictly decoupling pitch and energy variance manipulation. |
-| **Length Regulator (`modules.py:168`)** | Missing `max_len` default; crashed on empty sequences or zero predicted durations. | Added `max_len=None`, dynamic device casting, and 1-frame minimum tensor clamping. |
-| **Scheduler Resumption (`optimizer.py:42`)** | `ScheduledOptim` lacked `state_dict` serialization; resuming reset LR to step 0. | Implemented state serialization preserving `current_step` and Noam learning rate. |
-| **Normalization Leakage (`preprocessor.py:84`)** | Computed `stats.json` across both train and val, causing data leakage. | Enforced strict train-only normalization parameter computation. |
-| **Telugu Abugida Frontend** | Reference repo lacked Telugu phonetic and abugida G2P support. | Implemented 58-symbol rule-based G2P with virama suppression and conjunct decomposition. |
-| **Inference Exponent Overflow** | Denormalization `exp(p * std + mean)` overflowed on outlier predictions. | Clamped exponent to $[\ln(20.0), \ln(1000.0)]$, bounding physical $F_0$ to $[20, 1000]$ Hz. |
+### English
 
----
+| ID | What it tests | Length | Audio |
+|:--:|---|:--:|:--:|
+| **E1** | A very long word: *antidisestablishmentarianism* | 10.25 s | [▶ E1.wav](Results/English/test_generated_audios/E1.wav) |
+| **E2a** | *conduct* as a **noun** (stress on the first syllable) | 6.59 s | [▶ E2a.wav](Results/English/test_generated_audios/E2a.wav) |
+| **E2b** | *conduct* as a **verb** (stress on the second syllable) | 8.58 s | [▶ E2b.wav](Results/English/test_generated_audios/E2b.wav) |
+| **E3** | A typo with a stray space: *rhyth m* | 7.64 s | [▶ E3.wav](Results/English/test_generated_audios/E3.wav) |
+| **E4** | Numbers and dates (*10:45 AM*, *12 November 2026*) and an unknown word (*andaroo*) | 10.15 s | [▶ E4.wav](Results/English/test_generated_audios/E4.wav) |
 
-## 6. Technical Report Deliverable
+### తెలుగు (Telugu)
 
-The complete academic analysis is compiled in **`Report/Technical_Report.pdf`** (10 pages), covering:
-- **Section 1**: Introduction, Objectives, Non-Autoregressive vs Autoregressive Paradigms
-- **Section 2**: Architecture Lineage, FFT Blocks, Variance Adaptor, and Audited Bug Fixes Table
-- **Section 3**: Datasets (Svarah & IndicTTS), Transcript-Disjoint Splitting, Preprocessing Pipeline, English & Telugu Frontends
-- **Section 4**: Training Trajectories & Validation Loss Analysis (Mel, PostNet Mel, Duration, Pitch, Energy)
-- **Section 5**: Per-Sentence Synthesis Stats, Variance Adaptor Contour Analysis, and Homograph Stress Variations
-- **Section 6**: Comprehensive Test Sentence Analysis (E1–E4, T1–T4) with Embedded Duration, Pitch, and Energy Plots
-- **Section 7**: Cross-Lingual Comparison (English Multi-Speaker vs Telugu Single-Speaker), Limitations, and Failure Modes
-- **Section 8**: Reproducibility Details, Execution Commands, and Submission Manifest
+| ID | What it tests | Length | Audio |
+|:--:|---|:--:|:--:|
+| **T1** | A long technical word: *న్యూరోఫార్మకోలాజికల్* | 7.19 s | [▶ T1.wav](Results/Telugu/test_generated_audios/T1.wav) |
+| **T2a** | *పట్టు* meaning **grip** | 4.54 s | [▶ T2a.wav](Results/Telugu/test_generated_audios/T2a.wav) |
+| **T2b** | *పట్టు* inside the word *పట్టుచీరను* (**silk** saree) | 4.46 s | [▶ T2b.wav](Results/Telugu/test_generated_audios/T2b.wav) |
+| **T3** | A short story sentence: *పులి అడవిలో వేగంగా పరిగెత్తింది.* | 3.85 s | [▶ T3.wav](Results/Telugu/test_generated_audios/T3.wav) |
+| **T4** | A date and time read out in Telugu (*2026*, *10:45*, *12వ*) | 11.24 s | [▶ T4.wav](Results/Telugu/test_generated_audios/T4.wav) |
 
----
-
-## 7. Checkpoint Verification Manifest
-
-| Language | Checkpoint Path | Size | SHA-256 Hash |
-|:---|:---|:---:|:---|
-| **English** | `English/checkpoints/best.pth` | 140.5 MB | `84c421d9e03d77cd3f732064b75393fe7abb95f60d06427fa6deb61dd69e5192` |
-| **Telugu** | `Telugu/checkpoints/best.pth` | 140.4 MB | `82b39fe49ebe0012837fda23a25ac95eb869bc4271a70c10bc9d40becbe315e3` |
+> The test sentences were removed from the training data before training, so the models never saw them.
 
 ---
 
-## 8. Academic Integrity & AI Disclosure
+## 📈 Results
 
-In accordance with academic integrity guidelines:
-- **Author Block**: Debasis Panigrahi, B.Tech in Computer Science and Information Technology, Trident Academy of Technology, Bhubaneswar.
-- **AI Coding Assistant**: Google Antigravity (Gemini 2.5 Pro) was utilized for code scaffolding, debugging, and documentation assistance.
-- **Execution & Evaluation**: All model training runs (20,000 steps on NVIDIA RTX 4060 GPU), acoustic evaluations, phoneme alignments, and subjective listening analyses were conducted by the author.
+### Training curves
+
+Lower is better. The big drop at the start is the model learning quickly; the flat part afterwards means it has settled. Each picture shows the total loss and its parts (mel-spectrogram, pitch, energy and duration).
+
+**🇬🇧 English — training**
+<img src="docs/images/fig1a_english_training_loss.png" alt="English training loss curves" width="100%">
+
+**🇬🇧 English — validation** (on audio the model has not trained on)
+<img src="docs/images/fig1b_english_validation_loss.png" alt="English validation loss curves" width="100%">
+
+**🇮🇳 Telugu — training**
+<img src="docs/images/fig1c_telugu_training_loss.png" alt="Telugu training loss curves" width="100%">
+
+**🇮🇳 Telugu — validation**
+<img src="docs/images/fig1d_telugu_validation_loss.png" alt="Telugu validation loss curves" width="100%">
+
+### 🔍 Inside the model: duration, pitch and energy
+
+These plots show what the variance adaptor predicted for the test sentences. Blue bars are phoneme durations; the colourful picture underneath is the generated mel-spectrogram (the "picture of the sound").
+
+> ⚠️ In the pitch plots the predicted pitch sits near 600 Hz for most of each sentence, which is not a realistic voice. Read the pitch panels as a known issue, not as proof of intonation modelling.
+
+**Stress in English: *conduct* as a noun (E2a) and as a verb (E2b)**
+<img src="docs/images/fig2a_english_conduct_noun_vs_verb.png" alt="Duration, pitch and energy of conduct in E2a and E2b" width="100%">
+
+**Meaning in Telugu: *పట్టు* as grip (T2a) and inside the silk compound (T2b)**
+<img src="docs/images/fig2b_telugu_pattu_grip_vs_silk.png" alt="Duration, pitch and energy of the Telugu word in T2a and T2b" width="100%">
+
+**E1 — the long word *antidisestablishmentarianism*: durations**
+<img src="docs/images/fig3a_e1_duration.png" alt="E1 predicted duration with mel-spectrogram" width="100%">
+
+**E1 — pitch contour over the spectrogram**
+<img src="docs/images/fig3b_e1_pitch.png" alt="E1 predicted pitch with mel-spectrogram" width="100%">
+
+**E4 — numbers, dates and the unknown word *andaroo*: durations**
+<img src="docs/images/fig3c_e4_duration.png" alt="E4 predicted duration with mel-spectrogram" width="100%">
+
+**T1 — the long Telugu technical word: durations**
+<img src="docs/images/fig4a_t1_duration.png" alt="T1 predicted duration with mel-spectrogram" width="100%">
+
+**T1 — pitch contour over the spectrogram**
+<img src="docs/images/fig4b_t1_pitch.png" alt="T1 predicted pitch with mel-spectrogram" width="100%">
+
+**T4 — Telugu date and time read out in words: durations**
+<img src="docs/images/fig4c_t4_duration.png" alt="T4 predicted duration with mel-spectrogram" width="100%">
+
+### Numbers at the best checkpoint
+
+| Model | Step | Mel L1 | Duration loss |
+|---|:--:|:--:|:--:|
+| English | 7,000 | 1.0067 | 0.0554 |
+| Telugu | 2,000 | 1.0381 | 0.0361 |
+
+*Mel L1 measures how close the generated sound picture is to the real one (lower is better).*
+
+### What we found
+
+- ✅ **Stable on long and tricky text.** All ten sentences came out without skipped or repeated syllables, including the 28-letter English word and the long Telugu technical word.
+- ✅ **Numbers and dates work.** Times and dates are turned into words before synthesis in both languages.
+- ✅ **Word stress is audible in English.** A part-of-speech rule gives *conduct* different sounds as a noun and as a verb, and the difference can be heard.
+- ⚠️ **Telugu overfits early.** With only about 1.7 hours of training audio, the Telugu model gets its best score at step 2,000 and then slowly gets worse on unseen data. More Telugu data would help.
+- ⚠️ **Pitch plots need work.** In the variance-adaptor plots the predicted pitch sits near 600 Hz for most of each sentence, which is not a realistic voice. Because of this, the plots cannot be used as proof of how stress or intonation is modelled. This is being investigated.
+
+The full set of variance-adaptor plots for every test sentence is in `Results/<Language>/variance_adaptor_plots/`.
+
+📄 Full details, tables and all figures are in the **[Technical Report](Report/Technical_Report.pdf)**.
+
+---
+
+## 🔧 What we fixed in the reference code
+
+This project starts from [`ming024/FastSpeech2`](https://github.com/ming024/FastSpeech2). After a code audit, these problems were fixed:
+
+| 🧩 Part | ❌ Problem | ✅ Fix |
+|---|---|---|
+| **Variance adaptor** (`modules.py:124`) | Pitch control was passed where energy control belonged | Pass the energy control, so pitch and energy are controlled separately |
+| **Length regulator** (`modules.py:168`) | Crashed on empty sequences or all-zero durations | Added a default, device handling and a 1-frame minimum |
+| **Optimizer resume** (`optimizer.py:42`) | Resuming training restarted the learning rate from step 0 | Save and restore the scheduler state |
+| **Data leakage** (`preprocessor.py:84`) | Normalisation statistics used validation data too | Statistics are computed on training data only |
+| **Telugu text** | No support for Telugu script | New 58-symbol rule-based converter that handles conjunct letters |
+| **Pitch at inference** | The exponential used to restore pitch could overflow | Result limited to 20–1000 Hz |
+
+---
+
+## 📁 Project structure
+
+```
+fast_speech_2/
+├── English/                    # English model and its scripts
+│   ├── train.py                # training
+│   ├── preprocess.py           # feature extraction
+│   ├── inference.py            # text → speech
+│   ├── config.yaml             # settings
+│   └── checkpoints/            # best.pth (140.5 MB), last.pth (140.5 MB)
+├── Telugu/                     # Telugu model and its scripts (same layout)
+│   └── checkpoints/            # best.pth (140.4 MB), last.pth (140.4 MB)
+├── Results/
+│   ├── English/                # loss curves, test_generated_audios/, variance_adaptor_plots/
+│   └── Telugu/                 # loss curves, test_generated_audios/, variance_adaptor_plots/
+├── docs/
+│   └── images/                 # figures used in this README (same as in the report)
+├── Report/
+│   └── Technical_Report.pdf    # the full technical report
+├── README.md
+└── requirements.txt
+```
+
+<details>
+<summary><b>🔐 Checkpoint verification (SHA-256)</b></summary>
+
+| Language | File | Size | SHA-256 |
+|:--|:--|:--:|:--|
+| English | `English/checkpoints/best.pth` | 140.5 MB | `84c421d9e03d77cd3f732064b75393fe7abb95f60d06427fa6deb61dd69e5192` |
+| Telugu | `Telugu/checkpoints/best.pth` | 140.4 MB | `82b39fe49ebe0012837fda23a25ac95eb869bc4271a70c10bc9d40becbe315e3` |
+
+</details>
+
+---
+
+## 🙋 Author and AI disclosure
+
+**Debasis Panigrahi**
+B.Tech in Computer Science and Information Technology, Trident Academy of Technology, Bhubaneswar
+
+- 🤖 **AI assistant:** Google Antigravity (Gemini 2.5 Pro) was used for code scaffolding, debugging and documentation help.
+- 🧪 **Done by the author:** all training runs (20,000 steps each on an NVIDIA RTX 4060 laptop GPU), evaluations and listening tests.
+
+## 📚 Credits
+
+- Ren et al., *FastSpeech 2: Fast and High-Quality End-to-End Text to Speech* (2020)
+- [`ming024/FastSpeech2`](https://github.com/ming024/FastSpeech2) — reference implementation
+- IISc **Svarah** (Indian English) and IIT Madras **IndicTTS** (Telugu) speech corpora
+- **HiFi-GAN** neural vocoder
