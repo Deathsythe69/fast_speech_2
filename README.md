@@ -270,10 +270,3 @@ fast_speech_2/
 </details>
 
 ---
-
-## 🙋 Author and AI disclosure
-
-**Debasis Panigrahi**
-B.Tech in Computer Science and Information Technology, Trident Academy of Technology, Bhubaneswar
-
-- 🧪 **Done by the author:** all training runs (20,000 steps each on an NVIDIA RTX 4060 laptop GPU), evaluations and listening tests.
