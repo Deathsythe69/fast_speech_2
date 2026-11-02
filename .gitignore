@@ -16,14 +16,25 @@ htmlcov/
 .idea/
 .vscode/
 
-# Temporary / Scratch data
+# Raw Data, Assets & Training Logs
+assets/
+preprocessed_data/
+raw_data/
 scratch/
 tmp/
 *.tmp
 *.log
 events.out.tfevents.*
+English/logs/
+Telugu/logs/
+
+# Auxiliary metadata and intermediate raw arrays
+Results/*/variance_adaptor_plots/raw/
+Results/*/variance_adaptor_plots/comparisons/
+Results/*/test_generated_audios/*.json
+Report/listening_notes.md
+test_sentences.json
 
 # Antigravity agent system artifacts
 .system_generated/
 .gemini/
-

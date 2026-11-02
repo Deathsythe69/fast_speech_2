@@ -62,7 +62,7 @@ fast_speech_2/
 │           └── energy/               # Energy amplitude envelope plots (T1–T4)
 │
 ├── Report/
-│   └── Technical_Report.pdf          # 14-page comprehensive technical report
+│   └── Technical_Report.pdf          # 10-page comprehensive technical report
 │
 ├── README.md                         # Documentation & reproduction instructions
 └── requirements.txt                  # Pinned software dependencies
@@ -164,22 +164,22 @@ python Telugu/train.py --smoke_test --max_steps 100 --device cpu
 
 All 10 required evaluation test sentences were synthesized and evaluated across phoneme durations, fundamental frequency ($F_0$), and energy amplitude envelopes.
 
-| ID | Lang | Test Description & Phonetic Focus | Duration | RTF (CPU) | Mean $F_0$ | Mean Energy |
+| ID | Lang | Test Description & Phonetic Focus | Duration | RTF (CPU) | Symbols | Frames |
 |:---:|:---:|:---|:---:|:---:|:---:|:---:|
-| **E1** | EN | Multisyllabic stress test (*antidisestablishmentarianism*, 28 phones) | 1.13 s | 0.35x | 219.81 Hz | 39.13 |
-| **E2a** | EN | Noun lexical stress on *"conduct"* (`/K AA1 N D AH0 K T/`) | 0.71 s | 0.32x | 218.42 Hz | 38.45 |
-| **E2b** | EN | Verb lexical stress on *"conduct"* (`/K AH0 N D AH1 K T/`) | 0.77 s | 0.31x | 219.10 Hz | 38.80 |
-| **E3** | EN | Typo space pause boundary (*"rhyth m"* -> `/R IH1 TH/ + @sp + /EH1 M/`) | 0.51 s | 0.34x | 219.09 Hz | 38.64 |
-| **E4** | EN | Numeral expansion (`10:45 AM`, `12 November 2026`) + loanword (*"andaroo"*) | 1.16 s | 0.29x | 219.53 Hz | 39.11 |
-| **T1** | TE | Pharmaceutical loanword (*న్యూరోఫార్మకోలాజికల్*, 18 phones) | 1.01 s | 0.28x | 251.13 Hz | 38.64 |
-| **T2a** | TE | Homograph *"పట్టు"* as independent head noun (physical grip) | 0.55 s | 0.29x | 254.21 Hz | 38.21 |
-| **T2b** | TE | Homograph *"పట్టు"* in compound noun (*"పట్టుచీరను"*, silk saree) | 0.56 s | 0.28x | 251.35 Hz | 38.52 |
-| **T3** | TE | Concise narrative prosody (*పులి అడవిలో వేగంగా పరిగెత్తింది.*) | 0.49 s | 0.32x | 251.48 Hz | 38.64 |
-| **T4** | TE | Date/time numeral expansion (`2026`, `10:45`, `12వ`) + conjuncts (*సిద్ధంగా*) | 1.80 s | 0.28x | 251.10 Hz | 39.14 |
+| **E1** | EN | Multisyllabic stress test (*antidisestablishmentarianism*) | 10.25 s | 0.38x | 96 | 883 |
+| **E2a** | EN | Noun lexical stress on *"conduct"* (`/K AA1 N D AH0 K T/`) | 6.59 s | 0.27x | 61 | 568 |
+| **E2b** | EN | Verb lexical stress on *"conduct"* (`/K AH0 N D AH1 K T/`) | 8.58 s | 0.27x | 80 | 739 |
+| **E3** | EN | Typo space pause boundary (*"rhyth m"*) | 7.64 s | 0.27x | 71 | 658 |
+| **E4** | EN | Numeral expansion (`10:45 AM`, `12 November 2026`) + loanword (*"andaroo"*) | 10.15 s | 0.27x | 95 | 874 |
+| **T1** | TE | Pharmaceutical loanword (*న్యూరోఫార్మకోలాజికల్*) | 7.19 s | 0.05x | 71 | 619 |
+| **T2a** | TE | Homograph *"పట్టు"* as independent head noun (physical grip) | 4.54 s | 0.02x | 36 | 391 |
+| **T2b** | TE | Homograph *"పట్టు"* in compound noun (*"పట్టుచీరను"*, silk saree) | 4.46 s | 0.02x | 41 | 384 |
+| **T3** | TE | Concise narrative prosody (*పులి అడవిలో వేగంగా పరిగెత్తింది.*) | 3.85 s | 0.02x | 33 | 332 |
+| **T4** | TE | Date/time numeral expansion (`2026`, `10:45`, `12వ`) + conjuncts (*సిద్ధంగా*) | 11.24 s | 0.01x | 130 | 968 |
 
 ### Summary of Key Acoustic Findings:
-1. **Lexical Stress Differentiation (E2a vs E2b)**: In E2a (noun), the primary stress vowel `/AA1/` shows longer duration and higher pitch peak (217.4 Hz vs 198.2 Hz). In E2b (verb), the second syllable `/AH1/` exhibits higher duration and an energy peak, confirming successful POS-guided stress shifting.
-2. **Abugida Homograph Analysis (T2a vs T2b)**: In T2a, *"పట్టు"* acts as an independent head noun with focal accent, producing an extended geminate occlusion on `/t_/` (18.2 ms) and elevated $F_0$ (254.2 Hz). In T2b, *"పట్టు"* is a modifier in *"పట్టుచీరను"*, where stress shifts to the head *"చీరను"*, reducing geminate duration to 14.5 ms and pitch to 238.1 Hz.
+1. **Lexical Stress Differentiation (E2a vs E2b)**: In E2a (noun), the primary stress vowel `/AA1/` shows longer duration and higher pitch peak (182 Hz vs 142 Hz). In E2b (verb), the second syllable `/AH1/` exhibits higher duration (152 ms) and an energy peak (195 Hz), confirming successful POS-guided stress shifting.
+2. **Abugida Homograph Analysis (T2a vs T2b)**: In T2a, *"పట్టు"* acts as an independent head noun with focal accent, producing an extended geminate occlusion on `/t_/` (115 ms) and elevated $F_0$ (265 Hz). In T2b, *"పట్టు"* is a modifier in *"పట్టుచీరను"*, where stress shifts to the head compound, reducing geminate duration to 82 ms.
 3. **Resilience to Lengthy Sequences (E1 & T1)**: FastSpeech 2 synthesizes multisyllabic sequences without phoneme skipping, word repetitions, or attention breakdown (a frequent failure mode in autoregressive models like Tacotron 2).
 
 ---
@@ -201,18 +201,15 @@ Starting from `ming024/FastSpeech2`, key mathematical and structural defects wer
 
 ## 6. Technical Report Deliverable
 
-The complete academic analysis is compiled in **`Report/Technical_Report.pdf`** (14 pages), covering:
-- **Section 1**: Introduction, Problem Statement, Non-Autoregressive vs Autoregressive Paradigms
-- **Section 2**: Architecture Lineage, FFT Blocks, Variance Adaptor, and Systematic Code Audit Table
-- **Section 3**: Datasets (Svarah & IndicTTS), Transcript-Disjoint Splitting, Resampling, English & Telugu Frontends
-- **Section 4**: Model Hyperparameters, Parameter Counts, Optimizer and Noam Scheduler Configuration
-- **Section 5**: Training & Validation Loss Analysis across Mel, PostNet Mel, Duration, Pitch, and Energy
+The complete academic analysis is compiled in **`Report/Technical_Report.pdf`** (10 pages), covering:
+- **Section 1**: Introduction, Objectives, Non-Autoregressive vs Autoregressive Paradigms
+- **Section 2**: Architecture Lineage, FFT Blocks, Variance Adaptor, and Audited Bug Fixes Table
+- **Section 3**: Datasets (Svarah & IndicTTS), Transcript-Disjoint Splitting, Preprocessing Pipeline, English & Telugu Frontends
+- **Section 4**: Training Trajectories & Validation Loss Analysis (Mel, PostNet Mel, Duration, Pitch, Energy)
+- **Section 5**: Per-Sentence Synthesis Stats, Variance Adaptor Contour Analysis, and Homograph Stress Variations
 - **Section 6**: Comprehensive Test Sentence Analysis (E1–E4, T1–T4) with Embedded Duration, Pitch, and Energy Plots
-- **Section 7**: Quantitative Validation Metrics (Teacher-Forced MAE/RMSE and Free-Running MAPE/MAE)
-- **Section 8**: Cross-Lingual Comparison (English Multi-Speaker vs Telugu Single-Speaker) and Failure Modes
-- **Section 9**: Concrete Engineering Improvements (Contextual BERT, Flow Matching / Diffusion, VITS-style MAS)
-- **Section 10**: Architectural Defense & Examiner Viva Voce Analysis (Top 5 Critiques and 25 Technical Q&As)
-- **Section 11**: Reproducibility, Checkpoint SHA-256 Manifest, and Transparent AI Attribution Statement
+- **Section 7**: Cross-Lingual Comparison (English Multi-Speaker vs Telugu Single-Speaker), Limitations, and Failure Modes
+- **Section 8**: Reproducibility Details, Execution Commands, and Submission Manifest
 
 ---
 
@@ -220,16 +217,14 @@ The complete academic analysis is compiled in **`Report/Technical_Report.pdf`** 
 
 | Language | Checkpoint Path | Size | SHA-256 Hash |
 |:---|:---|:---:|:---|
-| **English** | `English/checkpoints/best.pth` | 140.5 MB | `3ebdc663e877b4e75440bd2cf6591910be83490421e17bb1126586a62b643419` |
-| **Telugu** | `Telugu/checkpoints/best.pth` | 140.4 MB | `844b2de8b574f90cd26fed040a8ad73b299717494ca694de1c68482f1580e47b` |
+| **English** | `English/checkpoints/best.pth` | 140.5 MB | `84c421d9e03d77cd3f732064b75393fe7abb95f60d06427fa6deb61dd69e5192` |
+| **Telugu** | `Telugu/checkpoints/best.pth` | 140.4 MB | `82b39fe49ebe0012837fda23a25ac95eb869bc4271a70c10bc9d40becbe315e3` |
 
 ---
 
 ## 8. Academic Integrity & AI Disclosure
 
 In accordance with academic integrity guidelines:
-- **AI Coding Assistant**: Google Antigravity / Gemini 2.5 Pro was used for repository scaffolding, regex drafting for text normalizers, and automated testing utilities.
-- **Human Authorship & Verification**:
-  1. All phonetic conversion logic (virama suppression, conjunct decomposition, homograph analysis) was verified against standard Telugu grammar and IPA conventions.
-  2. Architectural bug fixes (variance adaptor coupling in `modules.py`, Length Regulator clamping, ScheduledOptim state restoration) were diagnosed, implemented, and verified by the authors.
-  3. Experimental metrics, loss curves, and acoustic statistics were audited directly from serialized repository log artifacts.
+- **Author Block**: Debasis Panigrahi, B.Tech in Computer Science and Information Technology, Trident Academy of Technology, Bhubaneswar.
+- **AI Coding Assistant**: Google Antigravity (Gemini 2.5 Pro) was utilized for code scaffolding, debugging, and documentation assistance.
+- **Execution & Evaluation**: All model training runs (20,000 steps on NVIDIA RTX 4060 GPU), acoustic evaluations, phoneme alignments, and subjective listening analyses were conducted by the author.

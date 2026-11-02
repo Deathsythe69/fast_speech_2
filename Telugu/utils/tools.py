@@ -31,14 +31,14 @@ def to_device(data, device):
             durations,
         ) = data
 
-        speakers = torch.from_numpy(speakers).long().to(device)
-        texts = torch.from_numpy(texts).long().to(device)
-        src_lens = torch.from_numpy(src_lens).to(device)
-        mels = torch.from_numpy(mels).float().to(device)
-        mel_lens = torch.from_numpy(mel_lens).to(device)
-        pitches = torch.from_numpy(pitches).float().to(device)
-        energies = torch.from_numpy(energies).to(device)
-        durations = torch.from_numpy(durations).long().to(device)
+        speakers = torch.from_numpy(speakers).long().to(lengths.device)
+        texts = torch.from_numpy(texts).long().to(lengths.device)
+        src_lens = torch.from_numpy(src_lens).to(lengths.device)
+        mels = torch.from_numpy(mels).float().to(lengths.device)
+        mel_lens = torch.from_numpy(mel_lens).to(lengths.device)
+        pitches = torch.from_numpy(pitches).float().to(lengths.device)
+        energies = torch.from_numpy(energies).to(lengths.device)
+        durations = torch.from_numpy(durations).long().to(lengths.device)
 
         return (
             ids,
@@ -58,9 +58,9 @@ def to_device(data, device):
     if len(data) == 6:
         (ids, raw_texts, speakers, texts, src_lens, max_src_len) = data
 
-        speakers = torch.from_numpy(speakers).long().to(device)
-        texts = torch.from_numpy(texts).long().to(device)
-        src_lens = torch.from_numpy(src_lens).to(device)
+        speakers = torch.from_numpy(speakers).long().to(lengths.device)
+        texts = torch.from_numpy(texts).long().to(lengths.device)
+        src_lens = torch.from_numpy(src_lens).to(lengths.device)
 
         return (ids, raw_texts, speakers, texts, src_lens, max_src_len)
 
@@ -92,7 +92,7 @@ def get_mask_from_lengths(lengths, max_len=None):
     if max_len is None:
         max_len = torch.max(lengths).item()
 
-    ids = torch.arange(0, max_len).unsqueeze(0).expand(batch_size, -1).to(device)
+    ids = torch.arange(0, max_len).unsqueeze(0).expand(batch_size, -1).to(lengths.device)
     mask = ids >= lengths.unsqueeze(1).expand(-1, max_len)
 
     return mask

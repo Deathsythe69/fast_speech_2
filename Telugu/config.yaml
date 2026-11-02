@@ -74,9 +74,9 @@ train:
     anneal_steps: [300000, 400000, 500000]
     anneal_rate: 0.3
   step:
-    total_step: 200000
-    log_step: 100
+    total_step: 20000
+    log_step: 50
     synth_step: 1000
-    val_step: 1000
-    save_step: 10000
+    val_step: 500
+    save_step: 1000
 
