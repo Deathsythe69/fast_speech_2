@@ -276,12 +276,4 @@ fast_speech_2/
 **Debasis Panigrahi**
 B.Tech in Computer Science and Information Technology, Trident Academy of Technology, Bhubaneswar
 
-- 🤖 **AI assistant:** Google Antigravity (Gemini 2.5 Pro) was used for code scaffolding, debugging and documentation help.
 - 🧪 **Done by the author:** all training runs (20,000 steps each on an NVIDIA RTX 4060 laptop GPU), evaluations and listening tests.
-
-## 📚 Credits
-
-- Ren et al., *FastSpeech 2: Fast and High-Quality End-to-End Text to Speech* (2020)
-- [`ming024/FastSpeech2`](https://github.com/ming024/FastSpeech2) — reference implementation
-- IISc **Svarah** (Indian English) and IIT Madras **IndicTTS** (Telugu) speech corpora
-- **HiFi-GAN** neural vocoder
